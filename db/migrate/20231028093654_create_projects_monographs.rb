@@ -10,7 +10,6 @@ class CreateProjectsMonographs < ActiveRecord::Migration[7.1]
       t.string :pages
       t.text :terms_use
       t.text :objective
-      t.string :keywords
       t.text :index
       t.text :summary
       t.string :state

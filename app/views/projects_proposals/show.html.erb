@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @proposal %>
+
+<h1>Detalhes da proposta</h1>
+
+<div>
+  <%= link_to "Edit this proposal", edit_projects_proposal_path(@proposal) %> |
+  <%= link_to "Back to proposals", projects_proposals_path %>
+
+  <p><strong>Theme:</strong> <%= @proposal.theme %></p>
+  <p><strong>Objectives:</strong> <%= @proposal.objectives %></p>
+  <p><strong>Summary:</strong> <%= @proposal.summary %></p>
+  <p><strong>Literature:</strong> <%= @proposal.literature %></p>
+  <p><strong>State:</strong> <%= @proposal.state %></p>
+
+  <%= button_to "Destroy this proposal", @proposal, method: :delete %>
+</div>

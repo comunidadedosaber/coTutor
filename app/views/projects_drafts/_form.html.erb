@@ -1,0 +1,111 @@
+<%= form_with(model: draft) do |form| %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+  <% if draft.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(draft.errors.count, "error") %> prohibited this draft from being saved:</h2>
+
+      <ul>
+        <% draft.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :project, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.collection_select :project_id, Project.all, :id, :title, { prompt: "Select an option" }, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :theme %>
+    <%= form.text_field :theme %>
+  </div>
+
+  <div class="field">
+    <%= form.label :introduction %>
+    <%= form.text_field :introduction %>
+  </div>
+
+  <div class="field">
+    <%= form.label :problem %>
+    <%= form.text_field :problem %>
+  </div>
+
+  <div class="field">
+    <%= form.label :study_object %>
+    <%= form.text_field :study_object %>
+  </div>
+
+  <div class="field">
+    <%= form.label :action_field %>
+    <%= form.text_field :action_field %>
+  </div>
+
+  <div class="field">
+    <%= form.label :general_objective %>
+    <%= form.text_field :general_objective %>
+  </div>
+
+  <div class="field">
+    <%= form.label :specific_objective %>
+    <%= form.text_field :specific_objective %>
+  </div>
+
+  <div class="field">
+    <%= form.label :justification %>
+    <%= form.text_field :justification %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hypothesis %>
+    <%= form.text_field :hypothesis %>
+  </div>
+
+  <div class="field">
+    <%= form.label :variables %>
+    <%= form.text_field :variables %>
+  </div>
+
+  <div class="field">
+    <%= form.label :methodology %>
+    <%= form.text_field :methodology %>
+  </div>
+
+  <div class="field">
+    <%= form.label :search %>
+    <%= form.text_field :search %>
+  </div>
+
+  <div class="field">
+    <%= form.label :methods %>
+    <%= form.text_field :methods %>
+  </div>
+
+  <div class="field">
+    <%= form.label :techniques %>
+    <%= form.text_field :techniques %>
+  </div>
+
+  <div class="field">
+    <%= form.label :structure %>
+    <%= form.text_field :structure %>
+  </div>
+
+  <div class="field">
+    <%= form.label :references %>
+    <%= form.text_field :references %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+  </div>
+
+<% end %>

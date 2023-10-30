@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @project %>
+
+<h1>Detalhes do projecto</h1>
+
+<div>
+  <%= link_to "Edit this project", edit_project_path(@project) %> |
+  <%= link_to "Back to projects", projects_path %>  
+
+  <p><strong>Title:</strong> <%= @project.title %></p>
+  <p><strong>Type:</strong> <%= @project.project_type %></p>
+  <p><strong>Department:</strong> <%= @project.department %></p>
+  <p><strong>Area:</strong> <%= @project.area %></p>
+  <p><strong>Course:</strong> <%= @project.course %></p>
+  <p><strong>Category:</strong> <%= @project.category %></p>
+  <p><strong>State:</strong> <%= @project.state %></p>
+  <p><strong>Lective year:</strong> <%= @project.lective_year %></p>
+
+  <%= button_to "Destroy this project", @project, method: :delete %>
+</div>

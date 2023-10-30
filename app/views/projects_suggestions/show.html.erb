@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @suggestion %>
+
+<div>
+  <%= link_to "Edit this suggestion", edit_projects_suggestion_path(@suggestion) %> |
+  <%= link_to "Back to suggestions", projects_suggestions_path %>
+  
+  <p><strong>Project:</strong> <%= @suggestion.project.title %></p>
+  <p><strong>Sugestions:</strong> <%= @suggestion.sugestions %></p>
+
+  <%= button_to "Destroy this suggestion", @suggestion, method: :delete %>
+</div>

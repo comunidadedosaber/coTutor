@@ -1,0 +1,47 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>projects</h1>
+
+<div id="projects">
+  <h1>Listagem de propostas</h1>  
+  <%= link_to "New project", new_project_path %>
+  <hr>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Department</th>
+        <th>Area</th>
+        <th>Course</th>
+        <th>Category</th>
+        <th>State</th>
+        <th>Lective year</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= project.title %></td>
+          <td><%= project.project_type %></td>
+          <td><%= project.department %></td>
+          <td><%= project.area %></td>
+          <td><%= project.course %></td>
+          <td><%= project.category %></td>
+          <td><%= project.state %></td>
+          <td><%= project.lective_year %></td>
+          <td>
+            <%= link_to 'Detalhes', project %>
+            <%= link_to 'Editar', edit_project_path(project) %>
+            <%= link_to 'Excluir', project, method: :delete, data: { confirm: 'Tem certeza?', turbo: false } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+

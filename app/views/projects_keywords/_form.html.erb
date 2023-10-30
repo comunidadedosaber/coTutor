@@ -1,0 +1,33 @@
+<%= form_with(model: keyword) do |form| %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+  <hr>
+
+  <% if keyword.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(keyword.errors.count, "error") %> prohibited this keyword from being saved:</h2>
+
+      <ul>
+        <% keyword.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>  
+
+  <div class="form-group">
+    <%= form.label :project, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.collection_select :project_id, Project.all, :id, :title, { prompt: "Select an option" }, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :keyword %>
+    <%= form.text_field :keyword %>
+  </div>
+  
+<% end %>

@@ -15,6 +15,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_093654) do
   enable_extension "plpgsql"
 
   create_table "projects", force: :cascade do |t|
+    t.string "title"
+    t.string "project_type"
     t.string "department"
     t.string "area"
     t.string "course"
@@ -27,7 +29,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_093654) do
 
   create_table "projects_archives", force: :cascade do |t|
     t.bigint "project_id", null: false
-    t.string "project_type"
     t.string "archive"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -70,7 +71,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_093654) do
 
   create_table "projects_keywords", force: :cascade do |t|
     t.bigint "project_id", null: false
-    t.string "project_type"
     t.string "keyword"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -97,7 +97,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_093654) do
     t.string "pages"
     t.text "terms_use"
     t.text "objective"
-    t.string "keywords"
     t.text "index"
     t.text "summary"
     t.string "state"
@@ -122,7 +121,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_093654) do
 
   create_table "projects_suggestions", force: :cascade do |t|
     t.bigint "project_id", null: false
-    t.string "project_type"
     t.text "sugestions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

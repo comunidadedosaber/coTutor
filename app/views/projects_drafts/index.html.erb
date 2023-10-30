@@ -1,0 +1,42 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Drafts</h1>
+
+<div id="drafts">
+  <h1>Listagem de ante-projecto</h1>  
+  <%= link_to "New draft", new_projects_draft_path %>
+  <hr>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Theme</th>
+        <th>Problem</th>
+        <th>Action field</th>
+        <th>Hypothesis</th>
+        <th>State</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @drafts.each do |draft| %>
+        <tr>
+          <td><%= draft.project.title %></td>
+          <td><%= draft.theme %></td>
+          <td><%= draft.problem %></td>
+          <td><%= draft.action_field %></td>
+          <td><%= draft.hypothesis %></td>
+          <td><%= draft.state %></td>
+          <td>
+            <%= link_to 'Detalhes', draft %>
+            <%= link_to 'Editar', edit_projects_draft_path(draft) %>
+            <%= link_to 'Excluir', draft, method: :delete, data: { confirm: 'Tem certeza?', turbo: false } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+

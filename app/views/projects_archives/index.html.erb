@@ -1,0 +1,35 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Archives</h1>
+
+<div id="archives">
+  <h1>Listagem de arquivos</h1>  
+  <%= link_to "New archive", new_projects_archive_path %>
+  <hr>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Archive</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @archives.each do |archive| %>
+        <tr>
+          <td><%= archive.project.title %></td>
+          <td><%= archive.archive %></td>
+          <td>
+            <%= link_to 'Detalhes', archive %>
+            <%= link_to 'Editar', edit_projects_archive_path(archive) %>
+            <%= link_to 'Excluir', archive, method: :delete, data: { confirm: 'Tem certeza?', turbo: false } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+

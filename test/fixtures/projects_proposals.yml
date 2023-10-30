@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  theme: MyString
+  objectives: MyText
+  summary: MyText
+  literature: MyText
+  state: MyString
+
+two:
+  project: two
+  theme: MyString
+  objectives: MyText
+  summary: MyText
+  literature: MyText
+  state: MyString
