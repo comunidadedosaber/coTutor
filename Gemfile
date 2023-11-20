@@ -20,6 +20,8 @@ gem "sprockets-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 gem "tailwindcss-rails", "~> 2.0"
+# WYSIWYG 
+gem 'tinymce-rails'
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
