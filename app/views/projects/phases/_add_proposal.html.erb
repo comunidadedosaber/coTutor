@@ -1,0 +1,88 @@
+<%= render partial:'layouts/dashboard/header' %>   
+
+
+<div class="bg-white">
+  <div>
+
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <section aria-labelledby="proposals-heading" class="pb-24 pt-6">
+
+        <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+          
+          <!-- Sidebar -->
+          <%= render partial:'layouts/dashboard/sidebar' %>  
+
+          <!-- Project Proposals grid -->
+          <div class="lg:col-span-3">
+
+            <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-0">
+              <h1 class="text-4xl font-bold tracking-tight text-gray-900"> Proposals </h1>         
+            </div>
+
+            <div>
+              <form action="<%= projects_proposals_path %>" method="post" accept-charset="UTF-8">
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="theme">Theme: <span aria-hidden="true" style="color: red">*</span></label>
+                  <input type="text" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="theme" name="projects_proposal[theme]" placeholder="Theme" value="" required>
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="objectives">Objectives: <span aria-hidden="true" style="color: red">*</span></label>       
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="objectives" name="projects_proposal[objectives]" placeholder="Objectives" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="summary">Summary: <span aria-hidden="true" style="color: red">*</span></label>   
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="summary" name="projects_proposal[summary]" placeholder="Summary" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="literature">Literature: <span aria-hidden="true" style="color: red">*</span></label>   
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="literature" name="projects_proposal[literature]" placeholder="Literature" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="state">State: <span aria-hidden="true" style="color: red">*</span></label>
+                  <select name="projects_proposal[state]" id="state" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" required>
+                    <option value="">Select an option</option>
+                    <option value="Analisando"> Analisando</option>
+                    <option value="Aprovado"> Aprovado</option>
+                    <option value="Reprovado"> Reprovado</option>
+                  </select>    
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="project_id">Project: <span aria-hidden="true" style="color: red">*</span></label>
+                  <select name="projects_proposal[project_id]" id="project_id" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" required>
+                    <option value="<%= @project.id %>"> <%= @project.title %> </option>
+                  </select>    
+                </div>
+
+                <button type="submit" class="group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm" style="background-color: #3b82f6;">Add proposal</button>
+              </form>    
+            </div>   
+
+          </div> 
+
+        </div>
+
+      </section>
+      
+    </main>
+  </div>
+</div>
+
+
+<%= render partial:'layouts/dashboard/footer' %>  

@@ -15,7 +15,8 @@ class ProjectsBoardsController < ApplicationController
     def create
       @board = ProjectsBoard.new(board_params)
       if @board.save
-        redirect_to projects_boards_path, notice: 'Board was successfully created.'
+        #redirect_to projects_boards_path, notice: 'Board was successfully created.'
+        redirect_to "/projects/#{board_params["project_id"]}", notice: 'Board was successfully add.'
       else
         render :new
       end

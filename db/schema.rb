@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_093654) do
     t.string "area"
     t.string "course"
     t.string "category"
+    t.text "description"
     t.string "state"
     t.integer "lective_year"
     t.datetime "created_at", null: false
@@ -28,11 +29,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_093654) do
   end
 
   create_table "projects_archives", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.bigint "project_id", null: false
     t.string "archive"
+    t.string "description"
+    t.string "project_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_projects_archives_on_project_id"
+    t.index ["user_id"], name: "index_projects_archives_on_user_id"
   end
 
   create_table "projects_boards", force: :cascade do |t|
@@ -120,11 +125,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_093654) do
   end
 
   create_table "projects_suggestions", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.bigint "project_id", null: false
-    t.text "sugestions"
+    t.text "suggestion"
+    t.string "project_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_projects_suggestions_on_project_id"
+    t.index ["user_id"], name: "index_projects_suggestions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -140,6 +148,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_093654) do
   end
 
   add_foreign_key "projects_archives", "projects"
+  add_foreign_key "projects_archives", "users"
   add_foreign_key "projects_boards", "projects"
   add_foreign_key "projects_boards", "users"
   add_foreign_key "projects_drafts", "projects"
@@ -149,4 +158,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_28_093654) do
   add_foreign_key "projects_monographs", "projects"
   add_foreign_key "projects_proposals", "projects"
   add_foreign_key "projects_suggestions", "projects"
+  add_foreign_key "projects_suggestions", "users"
 end

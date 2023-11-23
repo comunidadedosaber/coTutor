@@ -60,6 +60,27 @@ class UsersController < ApplicationController
     end
   end
 
+  # PROJECTS
+  def index_projects
+    @user = User.find(params[:id])
+    @uers_projects_members = @user.projects_member
+    @uers_projects_boards = @user.projects_board
+
+    return render "/users/projects/_show_project"
+  end 
+
+  # DASHBOARD
+  def dashboard    
+    @user = User.find(params[:id])
+    @uers_projects_members = @user.projects_member
+    @uers_projects_boards = @user.projects_board
+
+    # @user_project = @user.projects_member.project
+
+    return render "/layouts/dashboard/dashboard"
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

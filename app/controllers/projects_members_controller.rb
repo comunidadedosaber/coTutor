@@ -13,12 +13,10 @@ class ProjectsMembersController < ApplicationController
     end
   
     def create
-      # debugger
-      # x = ""
-
       @member = ProjectsMember.new(member_params)
       if @member.save
-        redirect_to projects_members_path, notice: 'Member was successfully created.'
+        # redirect_to projects_members_path, notice: 'Member was successfully created.'
+        redirect_to "/projects/#{member_params["project_id"]}", notice: 'Member was successfully add.'
       else
         render :new
       end

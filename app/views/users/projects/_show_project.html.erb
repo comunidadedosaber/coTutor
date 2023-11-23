@@ -1,0 +1,58 @@
+
+    <div class="py-4">
+      <!-- Card-->
+      <div id='uers_projects' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white" style="margin-top: 15px;">
+        <h1 class="text-3xl font-bold justify-center" style="text-align: center;">
+          Project projects
+        </h1>
+        <table id="uers_projects_table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+          <thead>
+
+            <tr>
+              <th data-priority="1">User</th>
+              <th data-priority="2">Perfil</th>
+              <th data-priority="3">course</th>
+              <th data-priority="4">Type</th>
+              <th data-priority="5">State</th>
+              <th data-priority="6">Lective year</th>
+              <th data-priority="7">Action</th>
+            </tr>
+
+          </thead>
+          <tbody>
+            
+            <% @uers_projects_members.each do |projects_member| %>
+              <tr>
+                <td><%= link_to projects_member.project.title, projects_member %></td>
+                <td><%= link_to projects_member.perfil_type, projects_member %></td>
+                <td><%= link_to projects_member.project.course, projects_member %></td>
+                <td><%= link_to projects_member.project.project_type, projects_member %></td>
+                <td><%= link_to projects_member.project.state, projects_member %></td>
+                <td><%= link_to projects_member.project.lective_year, projects_member %></td>
+                <td class="flex">               
+                  <%= link_to 'Detalhes', projects_member, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #3b82f6; margin: 3px;" %>              
+                  <%= link_to 'Excluir', projects_member, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
+                </td>
+              </tr>
+            <% end %>
+
+            <% @uers_projects_boards.each do |projects_board| %>
+              <tr>
+                <td><%= link_to projects_board.project.title, projects_board %></td>
+                <td><%= link_to projects_board.perfil_type, projects_board %></td>
+                <td><%= link_to projects_board.project.course, projects_board %></td>
+                <td><%= link_to projects_board.project.project_type, projects_board %></td>
+                <td><%= link_to projects_board.project.state, projects_board %></td>
+                <td><%= link_to projects_board.project.lective_year, projects_board %></td>
+                <td class="flex">               
+                  <%= link_to 'Detalhes', projects_board, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #3b82f6; margin: 3px;" %>              
+                  <%= link_to 'Excluir', projects_board, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
+                </td>
+              </tr>
+            <% end %>
+          
+          </tbody>
+        </table>
+
+      </div>
+      <!--/Card-->

@@ -15,10 +15,11 @@ class ProjectsSuggestionsController < ApplicationController
     def create
       @suggestion = ProjectsSuggestion.new(suggestion_params)
       if @suggestion.save
-        redirect_to projects_suggestions_path, notice: 'Suggestion was successfully created.'
+        #redirect_to projects_suggestions_path, notice: 'Suggestion was successfully created.'
+        redirect_to "/projects/#{suggestion_params["project_id"]}", notice: 'Suggestion was successfully add.'
       else
         render :new
-      end
+      end            
     end
   
     def edit
@@ -47,7 +48,7 @@ class ProjectsSuggestionsController < ApplicationController
     end
   
     def suggestion_params
-      params.require(:projects_suggestion).permit(:project_id, :suggestions)
+      params.require(:projects_suggestion).permit(:user_id, :project_id, :project_type, :suggestion)
     end
   end
   

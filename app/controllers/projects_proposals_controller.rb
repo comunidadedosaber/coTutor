@@ -15,7 +15,8 @@ class ProjectsProposalsController < ApplicationController
     def create
       @proposal = ProjectsProposal.new(proposal_params)
       if @proposal.save
-        redirect_to projects_proposals_path, notice: 'Proposal was successfully created.'
+        #redirect_to projects_proposals_path, notice: 'Proposal was successfully created.'
+        redirect_to "/projects/#{proposal_params["project_id"]}", notice: 'Proposal was successfully add.'
       else
         render :new
       end

@@ -15,7 +15,8 @@ class ProjectsMonographsController < ApplicationController
     def create
       @monograph = ProjectsMonograph.new(monograph_params)
       if @monograph.save
-        redirect_to projects_monographs_path, notice: 'Monograph was successfully created.'
+        #redirect_to projects_monographs_path, notice: 'Monograph was successfully created.'        
+        redirect_to "/projects/#{monograph_params["project_id"]}", notice: 'Monograph was successfully add.'
       else
         render :new
       end

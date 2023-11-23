@@ -15,7 +15,8 @@ class ProjectsKeywordsController < ApplicationController
     def create
       @keyword = ProjectsKeyword.new(keyword_params)
       if @keyword.save
-        redirect_to projects_keywords_path, notice: 'Keyword was successfully created.'
+        #redirect_to projects_keywords_path, notice: 'Keyword was successfully created.'
+        redirect_to "/projects/#{keyword_params["project_id"]}", notice: 'Keyword was successfully add.'
       else
         render :new
       end

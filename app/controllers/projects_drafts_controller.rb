@@ -15,7 +15,8 @@ class ProjectsDraftsController < ApplicationController
     def create
       @draft = ProjectsDraft.new(draft_params)
       if @draft.save
-        redirect_to projects_drafts_path, notice: 'Draft was successfully created.'
+        #redirect_to projects_drafts_path, notice: 'Draft was successfully created.'
+        redirect_to "/projects/#{draft_params["project_id"]}", notice: 'Draft was successfully add.'
       else
         render :new
       end

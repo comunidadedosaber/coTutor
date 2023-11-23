@@ -15,7 +15,8 @@ class ProjectsArchivesController < ApplicationController
     def create
       @archive = ProjectsArchive.new(archive_params)
       if @archive.save
-        redirect_to projects_archives_path, notice: 'Archive was successfully created.'
+        #redirect_to projects_archives_path, notice: 'Archive was successfully created.'
+        redirect_to "/projects/#{archive_params["project_id"]}", notice: 'Archive was successfully add.'
       else
         render :new
       end
@@ -47,7 +48,7 @@ class ProjectsArchivesController < ApplicationController
     end
   
     def archive_params
-      params.require(:projects_archive).permit(:project_id, :archive)
+      params.require(:projects_archive).permit(:user_id, :project_id, :archive, :description, :project_type)
     end
   end
   

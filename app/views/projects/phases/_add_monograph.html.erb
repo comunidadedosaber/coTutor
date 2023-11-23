@@ -1,0 +1,144 @@
+<%= render partial:'layouts/dashboard/header' %>   
+
+
+<div class="bg-white">
+  <div>
+
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <section aria-labelledby="monographs-heading" class="pb-24 pt-6">
+
+        <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+          
+          <!-- Sidebar -->
+          <%= render partial:'layouts/dashboard/sidebar' %>  
+
+          <!-- Project Monographs grid -->
+          <div class="lg:col-span-3">
+
+            <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-0">
+              <h1 class="text-4xl font-bold tracking-tight text-gray-900"> Monographs </h1>         
+            </div>
+
+            <div>
+              <form action="<%= projects_monographs_path %>" method="post" accept-charset="UTF-8">
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="theme">Theme: <span aria-hidden="true" style="color: red">*</span></label>
+                  <input type="text" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="theme" name="projects_monograph[theme]" placeholder="Theme" value="" required>
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="editor">Editor: <span aria-hidden="true" style="color: red">*</span></label>
+                  <select name="projects_monograph[editor]" id="editor" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" required>
+                    <option value="">Select an option</option>
+                      <option value="CS"> CS</option>
+                  </select>    
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="language">Language: <span aria-hidden="true" style="color: red">*</span></label>
+                  <select name="projects_monograph[language]" id="language" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" required>
+                    <option value="">Select an option</option>
+                      <option value="pt-Br"> Português </option>
+                  </select>    
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="country">Country: <span aria-hidden="true" style="color: red">*</span></label>
+                  <select name="projects_monograph[country]" id="country" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" required>
+                    <option value="">Select an option</option>
+                      <option value="ao"> Angola </option>
+                  </select>    
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="project_type">Project type: <span aria-hidden="true" style="color: red">*</span></label>
+                  <select name="projects_monograph[project_type]" id="project_type" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" required>
+                    <option value="<%= @project.id %>"> Projecto</option>
+                    <option value="<%= @project.id %>"> Proposta </option>
+                    <option value="<%= @project.id %>"> AnteProjecto </option>
+                    <option value="<%= @project.id %>"> Monografia </option>
+                  </select>    
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="pages">Pages: <span aria-hidden="true" style="color: red">*</span></label>
+                  <input type="text" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="pages" name="projects_monograph[pages]" placeholder="Number of pages" value="" required>
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="terms_use">Terms: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="terms_use" name="projects_monograph[terms_use]" placeholder="Terms of use" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="objective">Objective: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="objective" name="projects_monograph[objective]" placeholder="Objective" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="summary">Summary: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="summary" name="projects_monograph[summary]" placeholder="Summary" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="privacy">Privacy: <span aria-hidden="true" style="color: red">*</span></label>
+                  <select name="projects_monograph[privacy]" id="privacy" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" required>
+                    <option value="">Select an option</option>
+                      <option value="public"> Publico </option>
+                      <option value="private"> Privado </option>
+                  </select>    
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="lective_year">Lective year: <span aria-hidden="true" style="color: red">*</span></label>
+                  <select name="projects_monograph[lective_year]" id="lective_year" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" required>
+                    <option value="">Select an option</option>
+                      <option value="23/24"> 23/24 </option>
+                  </select>    
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="state">State: <span aria-hidden="true" style="color: red">*</span></label>
+                  <select name="projects_monograph[state]" id="state" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" required>
+                    <option value="">Select an option</option>
+                      <option value="Analisando"> Analisando</option>
+                      <option value="Aprovado"> Aprovado</option>
+                      <option value="Reprovado"> Reprovado</option>
+                  </select>
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="project_id">Project: <span aria-hidden="true" style="color: red">*</span></label>
+                  <select name="projects_monograph[project_id]" id="project_id" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" required>
+                    <option value="<%= @project.id %>"> <%= @project.title %> </option>
+                  </select>    
+                </div>
+
+                <button type="submit" class="group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm" style="background-color: #3b82f6;">Add monograph</button>
+              </form>
+            </div>   
+
+          </div> 
+
+        </div>
+
+      </section>
+      
+    </main>
+  </div>
+</div>
+
+
+<%= render partial:'layouts/dashboard/footer' %>  

@@ -1,59 +1,80 @@
-<%= form_with(model: project) do |form| %>
+<%= render partial:'layouts/dashboard/header' %>   
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<div class="bg-white">
+  <div>
 
-  <% if project.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          
+      <%= form_with(model: project) do |form| %>
 
-      <ul>
-        <% project.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+
+        <% if project.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+            <ul>
+              <% project.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+        <div class="form-group" style="margin: 5px;">
+          <%= form.label :title %>
+          <%= form.text_field :title, class: "placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :project_type %>
+          <%= form.select :project_type, options_for_select(['Teórico', 'Prático']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :department %>
+          <%= form.select :department, options_for_select(['Engenharia']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :area %>
+          <%= form.select :area, options_for_select(['Informática']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :course %>
+          <%= form.select :course, options_for_select(['Engenharia Informática']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :category %>
+          <%= form.select :category, options_for_select(['Project', 'Licenciatura', 'Mestrado', 'Doutoramento']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: "tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm", rows: 40, cols: 120 %>
+
+          <%= tinymce %>
+        </div>
+
+        <div class="field">
+          <%= form.label :state %>
+          <%= form.select :state, options_for_select(['Analisando', 'Aprovado', 'Reprovado']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :lective_year %>
+          <%= form.select :lective_year, options_for_select(['2023']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
+        </div>
+
+      <% end %>
+      
+    </main>
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :project_type %>
-    <%= form.text_field :project_type %>
-  </div>
 
-  <div class="field">
-    <%= form.label :department %>
-    <%= form.text_field :department %>
-  </div>
-
-  <div class="field">
-    <%= form.label :area %>
-    <%= form.text_field :area %>
-  </div>
-
-  <div class="field">
-    <%= form.label :course %>
-    <%= form.text_field :course %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.text_field :category %>
-  </div>
-
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
-  </div>
-
-  <div class="field">
-    <%= form.label :lective_year %>
-    <%= form.text_field :lective_year %>
-  </div>
-
-<% end %>
+<%= render partial:'layouts/dashboard/footer' %>  

@@ -7,12 +7,15 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+  get '/login', to: 'home#login'
+  get '/register', to: 'home#register'
 
   resources :users
   get '/user/:id/projects', to: 'users#index_projects'
   get '/:id/dashboard', to: 'users#dashboard'
 
   resources :projects
+  get '/project/:id/preview', to: 'projects#preview'
 
   resources :projects_members
   get '/project/:id/members', to: 'projects#index_members'

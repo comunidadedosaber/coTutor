@@ -7,6 +7,7 @@ class CreateProjects < ActiveRecord::Migration[7.1]
       t.string :area
       t.string :course
       t.string :category
+      t.text :description
       t.string :state
       t.integer :lective_year
       t.timestamps
