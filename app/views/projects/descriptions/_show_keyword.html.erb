@@ -1,0 +1,37 @@
+
+    <div class="py-4">
+      <a class="hover:bg-blue-400 group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", href='<%= "/project/#{@project.id}/keywords/new" %>' style="margin: 5px;"> 
+        Add Keywords
+      </a>
+
+      <!-- Card-->
+      <div id='project_keywords' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white" style="margin-top: 15px;">
+        <h1 class="text-3xl font-bold justify-center" style="text-align: center;">
+          Project keywords
+        </h1>
+        <table id="project_keywords_table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+          <thead>
+
+            <tr>
+              <th data-priority="1">Keyword</th>
+              <th data-priority="2">Action</th>
+            </tr>
+
+          </thead>
+          <tbody>
+            
+            <% @project_keywords.each do |keyword| %>
+              <tr>
+                <td><%= link_to keyword.keyword, keyword %></td>
+                <td class="flex">               
+                  <%= link_to 'Detalhes', keyword, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #3b82f6; margin: 3px;" %>              
+                  <%= link_to 'Excluir', keyword, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
+                </td>
+              </tr>
+            <% end %>
+          
+          </tbody>
+        </table>
+
+      </div>
+      <!--/Card-->

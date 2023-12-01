@@ -1,0 +1,43 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Proposals</h1>
+
+<div id="proposals">
+  <h1>Listagem de propostas</h1>  
+  <%= link_to "New proposal", new_projects_proposal_path %>
+  <hr>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Theme</th>
+        <th>Objectives</th>
+        <th>Summary</th>
+        <th>Literature</th>
+        <th>State</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @proposals.each do |proposal| %>
+        <tr>
+          <td><%= proposal.project.title %></td>
+          <td><%= proposal.theme %></td>
+          <td><%= proposal.objectives %></td>
+          <td><%= proposal.summary %></td>
+          <td><%= proposal.literature %></td>
+          <td><%= proposal.state %></td>
+          <td>
+            <%= link_to 'Detalhes', proposal %>
+            <%= link_to 'Editar', edit_projects_proposal_path(proposal) %>
+            <%= link_to 'Excluir', proposal, method: :delete, data: { confirm: 'Tem certeza?', turbo: false } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+

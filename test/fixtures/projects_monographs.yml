@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  theme: MyString
+  editor: MyString
+  language: MyString
+  country: MyString
+  type: 
+  pages: MyString
+  terms_use: MyText
+  objective: MyText
+  keywords: MyString
+  index: MyText
+  summary: MyText
+  state: MyString
+  privacy: MyString
+  lective_year: 1
+
+two:
+  project: two
+  theme: MyString
+  editor: MyString
+  language: MyString
+  country: MyString
+  type: 
+  pages: MyString
+  terms_use: MyText
+  objective: MyText
+  keywords: MyString
+  index: MyText
+  summary: MyText
+  state: MyString
+  privacy: MyString
+  lective_year: 1

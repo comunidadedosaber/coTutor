@@ -1,0 +1,86 @@
+<%= form_with(model: monograph) do |form| %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+  <% if monograph.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(monograph.errors.count, "error") %> prohibited this monograph from being saved:</h2>
+
+      <ul>
+        <% monograph.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :project, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.collection_select :project_id, Project.all, :id, :title, { prompt: "Select an option" }, class: "form-control" %>
+    </div>
+  </div>
+  
+  <div class="field">
+    <%= form.label :theme %>
+    <%= form.text_field :theme %>
+  </div>
+
+  <div class="field">
+    <%= form.label :editor %>
+    <%= form.text_field :editor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :language %>
+    <%= form.text_field :language %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_type %>
+    <%= form.text_field :project_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pages %>
+    <%= form.text_field :pages %>
+  </div>
+
+  <div class="field">
+    <%= form.label :terms_use %>
+    <%= form.text_field :terms_use %>
+  </div>
+
+  <div class="field">
+    <%= form.label :objective %>
+    <%= form.text_field :objective %>
+  </div>
+
+  <div class="field">
+    <%= form.label :summary %>
+    <%= form.text_field :summary %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :privacy %>
+    <%= form.text_field :privacy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lective_year %>
+    <%= form.text_field :lective_year %>
+  </div>
+
+<% end %>

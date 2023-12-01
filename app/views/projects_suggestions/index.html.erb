@@ -1,0 +1,35 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Suggestions</h1>
+
+<div id="suggestions">
+  
+  <h1>Listagem de membros da banca</h1>  
+  <%= link_to "New suggestion", new_projects_suggestion_path %>
+  <hr>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Projecto</th>
+        <th>Sugestões</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @suggestions.each do |suggestion| %>
+        <tr>
+          <td><%= suggestion.project.title %></td>
+          <td><%= suggestion.sugestions %></td>
+          <td>
+            <%= link_to 'Detalhes', suggestion %>
+            <%= link_to 'Editar', edit_projects_suggestion_path(suggestion) %>
+            <%= link_to 'Excluir', suggestion, method: :delete, data: { confirm: 'Tem certeza?', turbo: false } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+</div>
+

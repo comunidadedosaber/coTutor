@@ -1,0 +1,41 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Monographs</h1>
+
+<div id="monographs">
+  <h1>Listagem de propostas</h1>  
+  <%= link_to "New monograph", new_projects_monograph_path %>
+  <hr>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Theme</th>
+        <th>Pages</th>
+        <th>State</th>
+        <th>Lective year</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @monographs.each do |monograph| %>
+        <tr>
+          <td><%= monograph.project.title %></td>
+          <td><%= monograph.theme %></td>
+          <td><%= monograph.pages %></td>
+          <td><%= monograph.state %></td>
+          <td><%= monograph.lective_year %></td>
+          <td>
+            <%= link_to 'Detalhes', monograph %>
+            <%= link_to 'Editar', edit_projects_monograph_path(monograph) %>
+            <%= link_to 'Excluir', monograph, method: :delete, data: { confirm: 'Tem certeza?', turbo: false } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+</div>
+
+

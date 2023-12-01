@@ -1,0 +1,38 @@
+
+    <div class="py-4">
+        <a class="hover:bg-blue-400 group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", href='<%= "/project/#{@project.id}/members/new" %>' style="margin: 5px;"> 
+          Add Members
+        </a>
+      <!-- Card-->
+      <div id='project_members' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white" style="margin-top: 15px;">
+        <h1 class="text-3xl font-bold justify-center" style="text-align: center;">
+          Project Members
+        </h1>
+        <table id="project_members_table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+          <thead>
+
+            <tr>
+              <th data-priority="1">User</th>
+              <th data-priority="2">Type</th>
+              <th data-priority="3">Action</th>
+            </tr>
+
+          </thead>
+          <tbody>
+            
+            <% @project_members.each do |member| %>
+              <tr>
+                <td><%= link_to member.user.name, member %></td>
+                <td><%= link_to member.perfil_type, member %></td>
+                <td class="flex">               
+                  <%= link_to 'Detalhes', member, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #3b82f6; margin: 3px;" %>              
+                  <%= link_to 'Excluir', member, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
+                </td>
+              </tr>
+            <% end %>
+          
+          </tbody>
+        </table>
+
+      </div>
+      <!--/Card-->

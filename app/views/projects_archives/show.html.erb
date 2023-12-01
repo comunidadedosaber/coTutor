@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @archive %>
+
+<div>
+  <%= link_to "Edit this archive", edit_projects_archive_path(@archive) %> |
+  <%= link_to "Back to archives", projects_archives_path %>
+
+  <p><strong>Project:</strong> <%= @archive.project.title %></p>
+  <p><strong>File:</strong> <%= @archive.archive %></p>
+
+  <%= button_to "Destroy this archive", @archive, method: :delete %>
+</div>

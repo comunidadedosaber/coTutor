@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @draft %>
+
+<div>
+  <%= link_to "Edit this draft", edit_projects_draft_path(@draft) %> |
+  <%= link_to "Back to drafts", projects_drafts_path %>
+
+  <p><strong>Project:</strong> <%= @draft.project.title %></p>
+  <p><strong>Theme:</strong> <%= @draft.theme %></p>
+  <p><strong>Introduction:</strong> <%= @draft.introduction %></p>
+  <p><strong>Problem:</strong> <%= @draft.problem %></p>
+  <p><strong>Study object:</strong> <%= @draft.study_object %></p>
+  <p><strong>Action field:</strong> <%= @draft.action_field %></p>
+  <p><strong>General objective:</strong> <%= @draft.general_objective %></p>
+  <p><strong>Specific objective:</strong> <%= @draft.specific_objective %></p>
+  <p><strong>Justification:</strong> <%= @draft.justification %></p>
+  <p><strong>Hypothesis:</strong> <%= @draft.hypothesis %></p>
+  <p><strong>Variables:</strong> <%= @draft.variables %></p>
+  <p><strong>Methodology:</strong> <%= @draft.methodology %></p>
+  <p><strong>Search:</strong> <%= @draft.search %></p>
+  <p><strong>Methods:</strong> <%= @draft.methods %></p>
+  <p><strong>Techniques:</strong> <%= @draft.techniques %></p>
+  <p><strong>Structure:</strong> <%= @draft.structure %></p>
+  <p><strong>References:</strong> <%= @draft.references %></p>
+  <p><strong>State:</strong> <%= @draft.state %></p>
+
+  <%= button_to "Destroy this draft", @draft, method: :delete %>
+</div>

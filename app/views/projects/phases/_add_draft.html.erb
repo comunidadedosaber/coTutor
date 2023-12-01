@@ -1,0 +1,184 @@
+<%= render partial:'layouts/dashboard/header' %>   
+
+
+<div class="bg-white">
+  <div>
+
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <section aria-labelledby="drafts-heading" class="pb-24 pt-6">
+
+        <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+          
+          <!-- Sidebar -->
+          <%= render partial:'layouts/dashboard/sidebar' %>  
+
+          <!-- Project Drafts grid -->
+          <div class="lg:col-span-3">
+
+            <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-0">
+              <h1 class="text-4xl font-bold tracking-tight text-gray-900"> Drafts </h1>         
+            </div>
+
+            <div>
+              <form action="<%= projects_drafts_path %>" method="post" accept-charset="UTF-8">
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="theme">Theme: <span aria-hidden="true" style="color: red">*</span></label>
+                  <input type="text" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="theme" name="projects_draft[theme]" placeholder="Theme" value="" required>
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="introduction">Introduction: <span aria-hidden="true" style="color: red">*</span></label>  
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="introduction" name="projects_draft[introduction]" placeholder="Introduction" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="problem">Problem: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="problem" name="projects_draft[problem]" placeholder="Problem" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="study_object">Study object: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="study_object" name="projects_draft[study_object]" placeholder="Study object" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="action_field">Action field: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="action_field" name="projects_draft[action_field]" placeholder="Action field" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="general_objective">General objective: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="general_objective" name="projects_draft[general_objective]" placeholder="General objective" rows="4" required>
+                  </textarea>   
+
+                  <%= tinymce %> 
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="specific_objective">Specific objective: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="specific_objective" name="projects_draft[specific_objective]" placeholder="Specific objective" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="justification">Justification: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="justification" name="projects_draft[justification]" placeholder="Justification" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="hypothesis">Hypothesis: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="hypothesis" name="projects_draft[hypothesis]" placeholder="Hypothesis" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="variables">Variables: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="variables" name="projects_draft[variables]" placeholder="Variables" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="methodology">Methodology: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="methodology" name="projects_draft[methodology]" placeholder="Methodology" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="search">Search: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="search" name="projects_draft[search]" placeholder="Search" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="methods">Methods: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="methods" name="projects_draft[methods]" placeholder="Methods" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="techniques">Techniques: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="techniques" name="projects_draft[techniques]" placeholder="Techniques" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="structure">Structure: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="structure" name="projects_draft[structure]" placeholder="Structure" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="references">References: <span aria-hidden="true" style="color: red">*</span></label>
+                  <textarea class="tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" id="references" name="projects_draft[references]" placeholder="Reference" rows="4" required>
+                  </textarea>
+
+                  <%= tinymce %>
+                </div>
+                
+                <div class="form-group" style="margin: 5px;">
+                  <label for="state">State: <span aria-hidden="true" style="color: red">*</span></label>
+                  <select name="projects_draft[state]" id="state" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" required>
+                    <option value="">Select an option</option>
+                      <option value="Analisando"> Analisando</option>
+                      <option value="Aprovado"> Aprovado</option>
+                      <option value="Reprovado"> Reprovado</option>
+                  </select>    
+                </div>
+
+                <div class="form-group" style="margin: 5px;">
+                  <label for="project_id">Project: <span aria-hidden="true" style="color: red">*</span></label>
+                  <select name="projects_draft[project_id]" id="project_id" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" required>
+                    <option value="<%= @project.id %>"> <%= @project.title %> </option>
+                  </select>    
+                </div>
+
+                <button type="submit" class="group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm" style="background-color: #3b82f6;">Add drafts</button>
+              </form>  
+            </div>   
+
+          </div> 
+
+        </div>
+
+      </section>
+      
+    </main>
+  </div>
+</div>
+
+
+<%= render partial:'layouts/dashboard/footer' %>  

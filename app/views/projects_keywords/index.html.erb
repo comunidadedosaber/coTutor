@@ -1,0 +1,35 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Keywords</h1>
+
+<div id="keywords">
+  <h1>Listagem de palavras chave</h1>  
+  <%= link_to "New keyword", new_projects_keyword_path %>
+  <hr>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Keywords</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @keywords.each do |keyword| %>
+        <tr>
+          <td><%= keyword.project.title %></td>
+          <td><%= keyword.keyword %></td>
+          <td>
+            <%= link_to 'Detalhes', keyword %>
+            <%= link_to 'Editar', edit_projects_keyword_path(keyword) %>
+            <%= link_to 'Excluir', keyword, method: :delete, data: { confirm: 'Tem certeza?', turbo: false } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+

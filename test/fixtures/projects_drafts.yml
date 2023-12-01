@@ -1,0 +1,41 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  theme: MyString
+  introduction: MyText
+  problem: MyText
+  study_object: MyText
+  action_field: MyText
+  general_objective: MyText
+  specific_objective: MyText
+  justification: MyText
+  hypothesis: MyText
+  variables: MyText
+  methodology: MyText
+  search: MyText
+  methods: MyText
+  techniques: MyText
+  structure: MyText
+  references: MyText
+  state: MyString
+
+two:
+  project: two
+  theme: MyString
+  introduction: MyText
+  problem: MyText
+  study_object: MyText
+  action_field: MyText
+  general_objective: MyText
+  specific_objective: MyText
+  justification: MyText
+  hypothesis: MyText
+  variables: MyText
+  methodology: MyText
+  search: MyText
+  methods: MyText
+  techniques: MyText
+  structure: MyText
+  references: MyText
+  state: MyString

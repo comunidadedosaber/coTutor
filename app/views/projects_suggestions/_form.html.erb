@@ -1,0 +1,31 @@
+<%= form_with(model: suggestion) do |form| %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+  <% if suggestion.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(suggestion.errors.count, "error") %> prohibited this suggestion from being saved:</h2>
+
+      <ul>
+        <% suggestion.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>   
+
+  <div class="form-group">
+    <%= form.label :project, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.collection_select :project_id, Project.all, :id, :title, { prompt: "Select an option" }, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="text">
+    <%= form.label :sugestions %>
+    <%= form.text_field :sugestions %>
+  </div>
+
+<% end %>

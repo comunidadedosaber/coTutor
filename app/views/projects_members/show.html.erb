@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @member %>
+
+<h1>Detalhes do membro</h1>
+
+<div>
+  <%= link_to "Edit this member", edit_projects_member_path(@member) %> |
+  <%= link_to "Back to members", projects_members_path %>
+
+  <p><strong>User:</strong> <%= @member.user.name %></p>
+  <p><strong>Project:</strong> <%= @member.project.title %></p>
+  <p><strong>Type:</strong> <%= @member.perfil_type %></p>
+
+  <%= button_to "Destroy this member", @member, method: :delete %>
+</div>

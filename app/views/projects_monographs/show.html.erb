@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @monograph %>
+
+<div>
+  <%= link_to "Edit this monograph", edit_projects_monograph_path(@monograph) %> |
+  <%= link_to "Back to monographs", projects_monographs_path %>
+  
+  <p><strong>Project:</strong> <%= @monograph.project.title %></p>
+  <p><strong>Theme:</strong> <%= @monograph.theme %></p>
+  <p><strong>Editor:</strong> <%= @monograph.editor %></p>
+  <p><strong>Language:</strong> <%= @monograph.language %></p>
+  <p><strong>Country:</strong> <%= @monograph.country %></p>
+  <p><strong>Project type:</strong> <%= @monograph.project_type %></p>
+  <p><strong>Pages:</strong> <%= @monograph.pages %></p>
+  <p><strong>Terms use:</strong> <%= @monograph.terms_use %></p>
+  <p><strong>Objective:</strong> <%= @monograph.objective %></p>
+  <p><strong>Summary:</strong> <%= @monograph.summary %></p>
+  <p><strong>State:</strong> <%= @monograph.state %></p>
+  <p><strong>Privacy:</strong> <%= @monograph.privacy %></p>
+  <p><strong>Lective year:</strong> <%= @monograph.lective_year %></p>
+
+  <%= button_to "Destroy this monograph", @monograph, method: :delete %>
+</div>

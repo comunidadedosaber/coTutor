@@ -1,0 +1,37 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Members</h1>
+
+<div id="members">
+  <h1>Listagem de membros do membero</h1>  
+  <%= link_to "New member", new_projects_member_path %>
+  <hr>
+
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Project</th>
+        <th>Type</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @members.each do |member| %>
+        <tr>
+          <td><%= member.user.name %></td>
+          <td><%= member.project.title %></td>
+          <td><%= member.perfil_type %></td>
+          <td>
+            <%= link_to 'Detalhes', member %>
+            <%= link_to 'Editar', edit_projects_member_path(member) %>
+            <%= link_to 'Excluir', member, method: :delete, data: { confirm: 'Tem certeza?', turbo: false } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+

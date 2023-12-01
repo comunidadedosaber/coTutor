@@ -1,0 +1,2 @@
+module ProjectsDraftsHelper
+end

@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @keyword %>
+
+<h1>Detalhes do projectos - palavras chave</h1>
+
+<div>
+  <%= link_to "Edit this keyword", edit_keyword_path(@keyword) %> |
+  <%= link_to "Back to keywords", projects_keywords_path %>
+
+  <p><strong>Project:</strong> <%= @board.project.title %></p>  
+  <p><strong>Palavra-chave:</strong> <%= @draft.keyword %></p>
+
+  <%= button_to "Destroy this keyword", @keyword, method: :delete %>
+</div>

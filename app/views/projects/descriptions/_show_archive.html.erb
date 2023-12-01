@@ -1,0 +1,36 @@
+
+    <div class="py-4"> 
+      <a class="hover:bg-blue-400 group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", href='<%= "/project/#{@project.id}/archives/new" %>' style="margin: 5px;"> 
+        Add Archives
+      </a>
+      <!-- Card-->
+      <div id='project_archives' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white" style="margin-top: 15px;">
+        <h1 class="text-3xl font-bold justify-center" style="text-align: center;">
+          Project archives
+        </h1>
+        <table id="project_archives_table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+          <thead>
+
+            <tr>
+              <th data-priority="1">Archive</th>
+              <th data-priority="2">Action</th>
+            </tr>
+
+          </thead>
+          <tbody>
+            
+            <% @project_archives.each do |archive| %>
+              <tr>
+                <td><%= link_to archive.archive, archive %></td>
+                <td class="flex">               
+                  <%= link_to 'Detalhes', archive, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #3b82f6; margin: 3px;" %>              
+                  <%= link_to 'Excluir', archive, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
+                </td>
+              </tr>
+            <% end %>
+          
+          </tbody>
+        </table>
+
+      </div>
+      <!--/Card-->
