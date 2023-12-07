@@ -17,6 +17,15 @@ class ProjectsController < ApplicationController
       @project = Project.new(project_params)
       
       if @project.save
+        # Add Member to a project
+        project_id = @project.id
+        member_params = {}
+        member_params["project_id"] = @project.id
+        member_params["user_id"] = 2
+        member_params["perfil_type"] = "Autor"
+        @member = ProjectsMember.new(member_params)
+        @member.save
+        
         redirect_to projects_path, notice: 'Project was successfully created.'
       else
         render :new

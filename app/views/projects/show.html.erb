@@ -128,78 +128,74 @@
               <div class="py-4">
                 
                 <!-- Members Card-->
-                <div id='project_members' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white" style="margin-top: 15px;">
-                  <h1 class="text-3xl font-bold justify-center" style="text-align: center;">
-                    Members
-                  </h1>
-                  <table id="project_members_table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-                    <thead>
-                      <tr>
-                        <th data-priority="1"></th>
-                        <th data-priority="2"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      
-                      <% @project.projects_member.each do |project_member| %>
-                        <tr>
-                          <td>
-                            <div class="flex min-w-0 gap-x-4">
-                              <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                              <div class="min-w-0 flex-auto">
-                                <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to project_member.user.name, project_member %></p>
-                                <p class="mt-1 truncate text-xs leading-5 text-gray-500"><%= link_to project_member.perfil_type, project_member %></p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="flex">
-                            <%= link_to 'Detalhes', project_member, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #3b82f6; margin: 3px;" %>              
-                            <%= link_to 'Excluir', project_member, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
-                          </td>
-                        </tr>
-                      <% end %>
+                <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3" style="margin-top: 15px">
+                  <div class="max-w-2xl" style="padding-bottom: 5px">
                     
-                    </tbody>
-                  </table>
+                    <div class="flex" style="padding-bottom: 5px">                      
+                      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                        Members 
+                      </h2>  
+                      <a class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-blue-400", href='<%= "/project/#{@project.id}/members/new" %>' style="margin-left: 15px;">                         
+                        New
+                      </a>  
+                    </div>    
 
+                    <hr>              
+                  </div>
+
+                  <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+                    <% @project.projects_member.each do |project_member| %>
+                      <li>
+                        <div class="flex items-center gap-x-6">
+                          <img class="h-16 w-16 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                          <div>                              
+                            <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900"><%= link_to project_member.user.name, project_member %></h3>
+                            <p class="text-sm font-semibold leading-6 text-indigo-600"><%= link_to project_member.perfil_type, project_member %></p>
+                                                          
+                            <%= link_to 'Excluir', project_member, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md text-black text-sm font-medium shadow-sm", style: "color: #F44336; margin: 3px;" %>
+                          </div>
+                        </div>
+                      </li>
+                    <% end %>
+
+                    <!-- More people... -->
+                  </ul>
                 </div>
                 <!--/Members Card-->  
 
-                <!-- Boards Card-->
-                <div id='project_members' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white" style="margin-top: 15px;">
-                  <h1 class="text-3xl font-bold justify-center" style="text-align: center;">
-                    Boards
-                  </h1>
-                  <table id="project_members_table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-                    <thead>
-                      <tr>
-                        <th data-priority="1"></th>
-                        <th data-priority="2"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      
-                      <% @project.projects_board.each do |project_board| %>
-                        <tr>
-                          <td>
-                            <div class="flex min-w-0 gap-x-4">
-                              <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                              <div class="min-w-0 flex-auto">
-                                <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to project_board.user.name, project_board %></p>
-                                <p class="mt-1 truncate text-xs leading-5 text-gray-500"><%= link_to project_board.perfil_type, project_board %></p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="flex">
-                            <%= link_to 'Detalhes', project_board, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #3b82f6; margin: 3px;" %>              
-                            <%= link_to 'Excluir', project_board, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
-                          </td>
-                        </tr>
-                      <% end %>
+                <!-- Boards Card-->                
+                <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3" style="margin-top: 15px">
+                  <div class="max-w-2xl" style="padding-bottom: 5px">
                     
-                    </tbody>
-                  </table>
+                    <div class="flex" style="padding-bottom: 5px">                      
+                      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                        Board 
+                      </h2>   
+                      <a class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-blue-400", href='<%= "/project/#{@project.id}/boards/new" %>' style="margin-left: 15px;">                         
+                        New
+                      </a>    
+                    </div>    
 
+                    <hr>              
+                  </div>
+
+                  <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+                    <% @project.projects_board.each do |project_board| %>
+                      <li>
+                        <div class="flex items-center gap-x-6">
+                          <img class="h-16 w-16 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                          <div>                              
+                            <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900"><%= link_to project_board.user.name, project_board %></h3>
+                            <p class="text-sm font-semibold leading-6 text-indigo-600"><%= link_to project_board.perfil_type, project_board %></p>
+                                                          
+                            <%= link_to 'Excluir', project_board, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md text-black text-sm font-medium shadow-sm", style: "color: #F44336; margin: 3px;" %>
+                          </div>
+                        </div>
+                      </li>
+                    <% end %>
+
+                    <!-- More people... -->
+                  </ul>
                 </div>
                 <!--/Boards Card-->  
 

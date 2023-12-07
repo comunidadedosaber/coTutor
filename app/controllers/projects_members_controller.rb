@@ -40,6 +40,7 @@ class ProjectsMembersController < ApplicationController
       @member.destroy
       redirect_to projects_members_path, notice: 'Member was successfully destroyed.'
     end
+
   
     private
 

@@ -4,6 +4,9 @@ ruby "2.7.2"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+
+gem 'devise', '~> 4.9', '>= 4.9.3'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
