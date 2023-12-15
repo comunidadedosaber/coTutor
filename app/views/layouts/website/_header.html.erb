@@ -16,13 +16,26 @@
         </button>
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Home</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Projects</a>
+        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Home</a>        
+        <% if user_signed_in? %>
+          <a href="/<%= current_user.id %>/dashboard" class="text-sm font-semibold leading-6 text-gray-900">Dashboard</a>
+        <% end %>        
+
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Contactos</a>
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Sobre</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="/login" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+        <% if user_signed_in? %>
+          <form action="<%= destroy_user_session_path %>" method="delete" accept-charset="UTF-8">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+            <button type="submit" class="text-sm font-semibold leading-6 text-gray-900"> Sign out <span aria-hidden="true">&rarr;</span> </button>
+          </form>
+        <% else %>
+          <%= link_to(new_user_session_path, method: :get, class: "text-sm font-semibold leading-6 text-gray-900") do %>
+            Sign in <span aria-hidden="true">&rarr;</span>
+          <% end %>
+        <% end %>
       </div>
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
@@ -46,12 +59,24 @@
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
               <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Home</a>
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Projects</a>
+              <% if user_signed_in? %>
+                <a href="/<%= current_user.id %>/dashboard" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Dashboard</a>
+              <% end %>
               <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Contactos</a>
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
+              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Sobre</a>
             </div>
             <div class="py-6">
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
+              <% if user_signed_in? %>
+                <form action="<%= destroy_user_session_path %>" method="delete" accept-charset="UTF-8">
+                  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+                  <button type="submit" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"> Sign out </button>
+                </form>
+              <% else %>
+                <%= link_to(new_user_session_path, method: :get, class: "-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50") do %>
+                  Sign in 
+                <% end %>
+              <% end %>
             </div>
           </div>
         </div>

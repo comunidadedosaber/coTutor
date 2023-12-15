@@ -14,9 +14,8 @@ class ProjectsMonographsController < ApplicationController
   
     def create
       @monograph = ProjectsMonograph.new(monograph_params)
-      if @monograph.save
-        #redirect_to projects_monographs_path, notice: 'Monograph was successfully created.'        
-        redirect_to "/projects/#{monograph_params["project_id"]}", notice: 'Monograph was successfully add.'
+      if @monograph.save        
+        redirect_to "/projects/#{monograph_params["project_id"]}"
       else
         render :new
       end
@@ -29,7 +28,7 @@ class ProjectsMonographsController < ApplicationController
     def update
       @monograph = ProjectsMonograph.find(params[:id])
       if @monograph.update(monograph_params)
-        redirect_to projects_monographs_path, notice: 'Monograph was successfully updated.'
+        redirect_to projects_monographs_path
       else
         render :edit
       end
@@ -38,7 +37,7 @@ class ProjectsMonographsController < ApplicationController
     def destroy
       @monograph = ProjectsMonograph.find(params[:id])
       @monograph.destroy
-      redirect_to projects_monographs_path, notice: 'Monograph was successfully destroyed.'
+      redirect_to projects_monographs_path
     end
   
     private

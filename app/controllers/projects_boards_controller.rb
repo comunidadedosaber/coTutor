@@ -14,9 +14,8 @@ class ProjectsBoardsController < ApplicationController
   
     def create
       @board = ProjectsBoard.new(board_params)
-      if @board.save
-        #redirect_to projects_boards_path, notice: 'Board was successfully created.'
-        redirect_to "/projects/#{board_params["project_id"]}", notice: 'Board was successfully add.'
+      if @board.save      
+        redirect_to "/projects/#{board_params["project_id"]}"
       else
         render :new
       end
@@ -29,7 +28,7 @@ class ProjectsBoardsController < ApplicationController
     def update
       @board = ProjectsBoard.find(params[:id])
       if @board.update(board_params)
-        redirect_to projects_boards_path, notice: 'Board was successfully updated.'
+        redirect_to projects_boards_path
       else
         render :edit
       end
@@ -38,7 +37,7 @@ class ProjectsBoardsController < ApplicationController
     def destroy
       @board = ProjectsBoard.find(params[:id])
       @board.destroy
-      redirect_to projects_boards_path, notice: 'Board was successfully destroyed.'
+      redirect_to projects_boards_path
     end
   
     private

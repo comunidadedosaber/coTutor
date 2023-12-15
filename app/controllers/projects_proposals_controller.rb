@@ -15,8 +15,7 @@ class ProjectsProposalsController < ApplicationController
     def create
       @proposal = ProjectsProposal.new(proposal_params)
       if @proposal.save
-        #redirect_to projects_proposals_path, notice: 'Proposal was successfully created.'
-        redirect_to "/projects/#{proposal_params["project_id"]}", notice: 'Proposal was successfully add.'
+        redirect_to "/projects/#{proposal_params["project_id"]}"
       else
         render :new
       end
@@ -29,7 +28,7 @@ class ProjectsProposalsController < ApplicationController
     def update
       @proposal = ProjectsProposal.find(params[:id])
       if @proposal.update(proposal_params)
-        redirect_to projects_proposals_path, notice: 'Proposal was successfully updated.'
+        redirect_to projects_proposals_path
       else
         render :edit
       end
@@ -38,7 +37,7 @@ class ProjectsProposalsController < ApplicationController
     def destroy
       @proposal = ProjectsProposal.find(params[:id])
       @proposal.destroy
-      redirect_to projects_proposals_path, notice: 'Proposal was successfully destroyed.'
+      redirect_to projects_proposals_path
     end
   
     private
