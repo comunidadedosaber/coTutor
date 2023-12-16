@@ -15,8 +15,7 @@ class ProjectsSuggestionsController < ApplicationController
     def create
       @suggestion = ProjectsSuggestion.new(suggestion_params)
       if @suggestion.save
-        #redirect_to projects_suggestions_path, notice: 'Suggestion was successfully created.'
-        redirect_to "/projects/#{suggestion_params["project_id"]}", notice: 'Suggestion was successfully add.'
+        redirect_to "/projects/#{suggestion_params["project_id"]}"
       else
         render :new
       end            
@@ -29,7 +28,7 @@ class ProjectsSuggestionsController < ApplicationController
     def update
       @suggestion = ProjectsSuggestion.find(params[:id])
       if @suggestion.update(suggestion_params)
-        redirect_to projects_suggestions_path, notice: 'Suggestion was successfully updated.'
+        redirect_to projects_suggestions_path
       else
         render :edit
       end
@@ -38,7 +37,7 @@ class ProjectsSuggestionsController < ApplicationController
     def destroy
       @suggestion = ProjectsSuggestion.find(params[:id])
       @suggestion.destroy
-      redirect_to projects_suggestions_path, notice: 'Suggestion was successfully destroyed.'
+      redirect_to projects_suggestions_path
     end
   
     private

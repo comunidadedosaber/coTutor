@@ -20,7 +20,7 @@
       <% @suggestions.each do |suggestion| %>
         <tr>
           <td><%= suggestion.project.title %></td>
-          <td><%= suggestion.sugestions %></td>
+          <td><%= suggestion.suggestion %></td>
           <td>
             <%= link_to 'Detalhes', suggestion %>
             <%= link_to 'Editar', edit_projects_suggestion_path(suggestion) %>

@@ -15,8 +15,7 @@ class ProjectsArchivesController < ApplicationController
     def create
       @archive = ProjectsArchive.new(archive_params)
       if @archive.save
-        #redirect_to projects_archives_path, notice: 'Archive was successfully created.'
-        redirect_to "/projects/#{archive_params["project_id"]}", notice: 'Archive was successfully add.'
+        redirect_to "/projects/#{archive_params["project_id"]}"
       else
         render :new
       end
@@ -29,7 +28,7 @@ class ProjectsArchivesController < ApplicationController
     def update
       @archive = ProjectsArchive.find(params[:id])
       if @archive.update(archive_params)
-        redirect_to projects_archives_path, notice: 'Archive was successfully updated.'
+        redirect_to projects_archives_path
       else
         render :edit
       end
@@ -38,7 +37,7 @@ class ProjectsArchivesController < ApplicationController
     def destroy
       @archive = ProjectsArchive.find(params[:id])
       @archive.destroy
-      redirect_to projects_archives_path, notice: 'Archive was successfully destroyed.'
+      redirect_to projects_archives_path
     end
   
     private

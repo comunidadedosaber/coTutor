@@ -15,8 +15,7 @@ class ProjectsMembersController < ApplicationController
     def create
       @member = ProjectsMember.new(member_params)
       if @member.save
-        # redirect_to projects_members_path, notice: 'Member was successfully created.'
-        redirect_to "/projects/#{member_params["project_id"]}", notice: 'Member was successfully add.'
+        redirect_to "/projects/#{member_params["project_id"]}"
       else
         render :new
       end
@@ -29,7 +28,7 @@ class ProjectsMembersController < ApplicationController
     def update
       @member = ProjectsMember.find(params[:id])
       if @member.update(member_params)
-        redirect_to projects_members_path, notice: 'Member was successfully updated.'
+        redirect_to projects_members_path
       else
         render :edit
       end
@@ -38,8 +37,9 @@ class ProjectsMembersController < ApplicationController
     def destroy
       @member = ProjectsMember.find(params[:id])
       @member.destroy
-      redirect_to projects_members_path, notice: 'Member was successfully destroyed.'
+      redirect_to projects_members_path
     end
+
   
     private
 

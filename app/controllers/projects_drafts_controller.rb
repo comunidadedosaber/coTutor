@@ -15,8 +15,7 @@ class ProjectsDraftsController < ApplicationController
     def create
       @draft = ProjectsDraft.new(draft_params)
       if @draft.save
-        #redirect_to projects_drafts_path, notice: 'Draft was successfully created.'
-        redirect_to "/projects/#{draft_params["project_id"]}", notice: 'Draft was successfully add.'
+        redirect_to "/projects/#{draft_params["project_id"]}"
       else
         render :new
       end
@@ -29,7 +28,7 @@ class ProjectsDraftsController < ApplicationController
     def update
       @draft = ProjectsDraft.find(params[:id])
       if @draft.update(draft_params)
-        redirect_to projects_drafts_path, notice: 'Draft was successfully updated.'
+        redirect_to projects_drafts_path
       else
         render :edit
       end
@@ -38,7 +37,7 @@ class ProjectsDraftsController < ApplicationController
     def destroy
       @draft = ProjectsDraft.find(params[:id])
       @draft.destroy
-      redirect_to projects_drafts_path, notice: 'Draft was successfully destroyed.'
+      redirect_to projects_drafts_path
     end
   
     private

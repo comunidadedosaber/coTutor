@@ -17,7 +17,16 @@ class ProjectsController < ApplicationController
       @project = Project.new(project_params)
       
       if @project.save
-        redirect_to projects_path, notice: 'Project was successfully created.'
+        # Add Member to a project
+        project_id = @project.id
+        member_params = {}
+        member_params["project_id"] = @project.id
+        member_params["user_id"] = current_user.id
+        member_params["perfil_type"] = "Autor"
+        @member = ProjectsMember.new(member_params)
+        @member.save
+        
+        redirect_to "/#{current_user.id}/dashboard"
       else
         render :new
       end
@@ -30,7 +39,7 @@ class ProjectsController < ApplicationController
     def update
       @project = Project.find(params[:id])
       if @project.update(project_params)
-        redirect_to projects_path, notice: 'Project was successfully updated.'
+        redirect_to projects_path
       else
         render :edit
       end
@@ -39,7 +48,7 @@ class ProjectsController < ApplicationController
     def destroy
       @project = Project.find(params[:id])
       @project.destroy
-      redirect_to projects_path, notice: 'Project was successfully destroyed.'
+      redirect_to projects_path
     end  
     
     # PREVIEW
