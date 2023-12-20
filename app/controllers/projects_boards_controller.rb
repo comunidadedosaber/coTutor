@@ -13,11 +13,19 @@ class ProjectsBoardsController < ApplicationController
     end
   
     def create
-      @board = ProjectsBoard.new(board_params)
-      if @board.save      
-        redirect_to "/projects/#{board_params["project_id"]}"
+      @board = ProjectsBoard.all
+      @board_user = @board.find_by(user_id: board_params[:user_id]) if board_params[:user_id].present?
+      @board_project = @board.find_by(project_id: board_params[:project_id]) if board_params[:project_id].present?
+
+      if @board_user.present? && @board_project.present?
+        redirect_to "/project/#{board_params["project_id"]}/boards/new", alert: 'O usuário já esta associado ao project.'
       else
-        render :new
+        @board = ProjectsBoard.new(board_params)        
+        if @board.save
+          redirect_to "/projects/#{board_params["project_id"]}"
+        else
+          render :new
+        end
       end
     end
   

@@ -13,12 +13,21 @@ class ProjectsMembersController < ApplicationController
     end
   
     def create
-      @member = ProjectsMember.new(member_params)
-      if @member.save
-        redirect_to "/projects/#{member_params["project_id"]}"
+      @member = ProjectsMember.all
+      @member_user = @member.find_by(user_id: member_params[:user_id]) if member_params[:user_id].present?
+      @member_project = @member.find_by(project_id: member_params[:project_id]) if member_params[:project_id].present?
+
+      if @member_user.present? && @member_project.present?
+        redirect_to "/project/#{member_params["project_id"]}/members/new", alert: 'O usuário já esta associado ao project.'
       else
-        render :new
+        @member = ProjectsMember.new(member_params)        
+        if @member.save
+          redirect_to "/projects/#{member_params["project_id"]}"
+        else
+          render :new
+        end
       end
+
     end
   
     def edit
