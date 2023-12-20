@@ -13,11 +13,32 @@ class ProjectsMonographsController < ApplicationController
     end
   
     def create
-      @monograph = ProjectsMonograph.new(monograph_params)
-      if @monograph.save        
-        redirect_to "/projects/#{monograph_params["project_id"]}"
+      @monograph = ProjectsMonograph.where(project_id: monograph_params[:project_id], state: ["Aprovado", "Analisando"])
+      
+      if @monograph.present?
+        @monograph.each do |monograph_project|
+          if monograph_project.state == "Aprovado"
+            redirect_to ("/project/#{monograph_params["project_id"]}/monographs/new"); return
+          else
+            if monograph_project.state == "Analisando"
+              redirect_to ("/project/#{monograph_params["project_id"]}/monographs/new"); return
+            else
+              @monograph = ProjectsMonograph.new(monograph_params)
+              if @monograph.save
+                redirect_to ("/projects/#{monograph_params["project_id"]}"); return
+              else
+                render :new
+              end
+            end
+          end
+        end
       else
-        render :new
+        @monograph = ProjectsMonograph.new(monograph_params)
+        if @monograph.save        
+          redirect_to ("/projects/#{monograph_params["project_id"]}"); return
+        else
+          render :new
+        end
       end
     end
   
