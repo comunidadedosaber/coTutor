@@ -36,8 +36,12 @@ class ProjectsKeywordsController < ApplicationController
   
     def destroy
       @keyword = ProjectsKeyword.find(params[:id])
-      @keyword.destroy
-      redirect_to projects_keywords_path
+      if @keyword.project.state == "Analisando"
+        @keyword.destroy
+        redirect_to "/projects/#{@keyword.project.id}"
+      else
+        redirect_to "/projects/#{@keyword.project.id}"
+      end
     end
   
     private

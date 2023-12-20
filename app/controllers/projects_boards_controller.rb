@@ -45,7 +45,7 @@ class ProjectsBoardsController < ApplicationController
     def destroy
       @board = ProjectsBoard.find(params[:id])
       @board.destroy
-      redirect_to projects_boards_path
+      redirect_to "/projects/#{@board.project.id}"
     end
   
     private

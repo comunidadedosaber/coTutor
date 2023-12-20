@@ -57,8 +57,12 @@ class ProjectsMonographsController < ApplicationController
   
     def destroy
       @monograph = ProjectsMonograph.find(params[:id])
-      @monograph.destroy
-      redirect_to projects_monographs_path
+      if @monograph.state == "Analisando"
+        @monograph.destroy
+        redirect_to "/projects/#{@monograph.project.id}"
+      else
+        redirect_to "/projects/#{@monograph.project.id}"
+      end
     end
   
     private

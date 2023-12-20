@@ -45,8 +45,12 @@ class ProjectsMembersController < ApplicationController
   
     def destroy
       @member = ProjectsMember.find(params[:id])
-      @member.destroy
-      redirect_to projects_members_path
+      if @member.perfil_type == "Autor"
+        redirect_to "/projects/#{@member.project.id}"
+      else
+        @member.destroy
+        redirect_to "/projects/#{@member.project.id}"
+      end
     end
 
   

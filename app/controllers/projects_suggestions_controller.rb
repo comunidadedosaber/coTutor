@@ -36,8 +36,12 @@ class ProjectsSuggestionsController < ApplicationController
   
     def destroy
       @suggestion = ProjectsSuggestion.find(params[:id])
-      @suggestion.destroy
-      redirect_to projects_suggestions_path
+      if @suggestion.project.state == "Analisando"
+        @suggestion.destroy
+        redirect_to "/projects/#{@suggestion.project.id}"
+      else
+        redirect_to "/projects/#{@suggestion.project.id}"
+      end
     end
   
     private

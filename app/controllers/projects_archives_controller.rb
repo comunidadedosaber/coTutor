@@ -36,8 +36,12 @@ class ProjectsArchivesController < ApplicationController
   
     def destroy
       @archive = ProjectsArchive.find(params[:id])
-      @archive.destroy
-      redirect_to projects_archives_path
+      if @archive.project.state == "Analisando"
+        @archive.destroy
+        redirect_to "/projects/#{@archive.project.id}"
+      else
+        redirect_to "/projects/#{@archive.project.id}"
+      end
     end
   
     private

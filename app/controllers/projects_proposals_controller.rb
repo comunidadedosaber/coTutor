@@ -57,8 +57,12 @@ class ProjectsProposalsController < ApplicationController
   
     def destroy
       @proposal = ProjectsProposal.find(params[:id])
-      @proposal.destroy
-      redirect_to projects_proposals_path
+      if @proposal.state == "Analisando"
+        @proposal.destroy
+        redirect_to "/projects/#{@proposal.project.id}"
+      else
+        redirect_to "/projects/#{@proposal.project.id}"
+      end
     end
   
     private

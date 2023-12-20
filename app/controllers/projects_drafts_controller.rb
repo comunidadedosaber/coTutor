@@ -57,8 +57,12 @@ class ProjectsDraftsController < ApplicationController
   
     def destroy
       @draft = ProjectsDraft.find(params[:id])
-      @draft.destroy
-      redirect_to projects_drafts_path
+      if @draft.state == "Analisando"
+        @draft.destroy
+        redirect_to "/projects/#{@draft.project.id}"
+      else
+        redirect_to "/projects/#{@draft.project.id}"
+      end
     end
   
     private
