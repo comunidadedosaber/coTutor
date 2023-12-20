@@ -13,11 +13,32 @@ class ProjectsProposalsController < ApplicationController
     end
   
     def create
-      @proposal = ProjectsProposal.new(proposal_params)
-      if @proposal.save
-        redirect_to "/projects/#{proposal_params["project_id"]}"
+      @proposal = ProjectsProposal.where(project_id: proposal_params[:project_id], state: ["Aprovado", "Analisando"])
+      
+      if @proposal.present?
+        @proposal.each do |proposal_project|
+          if proposal_project.state == "Aprovado"
+            redirect_to ("/project/#{proposal_params["project_id"]}/proposals/new"); return
+          else
+            if proposal_project.state == "Analisando"
+              redirect_to ("/project/#{proposal_params["project_id"]}/proposals/new"); return
+            else
+              @proposal = ProjectsProposal.new(proposal_params)
+              if @proposal.save
+                redirect_to ("/projects/#{proposal_params["project_id"]}"); return
+              else
+                render :new
+              end
+            end
+          end
+        end
       else
-        render :new
+        @proposal = ProjectsProposal.new(proposal_params)
+        if @proposal.save
+          redirect_to ("/projects/#{proposal_params["project_id"]}"); return
+        else
+          render :new
+        end
       end
     end
   

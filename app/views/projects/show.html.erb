@@ -296,155 +296,157 @@
                 </div>
                 <!--/Suggestion Card-->
 
-                <!-- Proposal Card-->
-                <div id='projects_proposals' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white" style="margin-top: 15px;">
-                  <h1 class="text-3xl font-bold justify-center" style="text-align: center;">
-                    Project Proposal
-                  </h1>
-                  <table id="projects_proposals_table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-                    <thead>
+                <% if @project.state == "Aprovado" %>
+                  <!-- Proposal Card-->
+                  <div id='projects_proposals' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white" style="margin-top: 15px;">
+                    <h1 class="text-3xl font-bold justify-center" style="text-align: center;">
+                      Project Proposal
+                    </h1>
+                    <table id="projects_proposals_table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                      <thead>
 
-                      <tr>
-                        <th data-priority="1">Proposal</th>
-                        <th data-priority="2">State</th>
-                        <th data-priority="3">Action</th>
-                      </tr>
-
-                    </thead>
-                    <tbody>
-                      
-                      <% @project.projects_proposal.each do |projects_proposal| %>
                         <tr>
-                          <td><%= link_to projects_proposal.theme, projects_proposal %></td>
-                          <td>
-                            <% if projects_proposal.state == "Analisando" %>
-                              <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10" style="margin-right: 5px">
-                                <%= projects_proposal.state %>
-                              </span>
-                            <% end %>
-                            <% if projects_proposal.state == "Aprovado" %>
-                              <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-600 ring-1 ring-inset ring-blue-500/10">
-                                <%= projects_proposal.state %>
-                              </span>
-                            <% end %>
-                            <% if projects_proposal.state == "Reprovado" %>
-                              <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-600 ring-1 ring-inset ring-red-500/10">
-                                <%= projects_proposal.state %>
-                              </span>
-                            <% end %>
-                          </td>
-                          <td class="flex">
-                            <%= link_to 'Detalhes', projects_proposal, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #3b82f6; margin: 3px;" %>              
-                            <%= link_to 'Excluir', projects_proposal, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
-                          </td>
+                          <th data-priority="1">Proposal</th>
+                          <th data-priority="2">State</th>
+                          <th data-priority="3">Action</th>
                         </tr>
-                      <% end %>
-                    
-                    </tbody>
-                  </table>
 
-                </div>
-                <!--/Proposal Card-->
-
-                <!-- Draft Card-->
-                <div id='projects_drafts' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white" style="margin-top: 15px;">
-                  <h1 class="text-3xl font-bold justify-center" style="text-align: center;">
-                    Project Draft
-                  </h1>
-                  <table id="projects_drafts_table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-                    <thead>
-
-                      <tr>
-                        <th data-priority="1">Draft</th>
-                        <th data-priority="2">State</th>
-                        <th data-priority="3">Action</th>
-                      </tr>
-
-                    </thead>
-                    <tbody>
+                      </thead>
+                      <tbody>
+                        
+                        <% @project.projects_proposal.each do |projects_proposal| %>
+                          <tr>
+                            <td><%= link_to projects_proposal.theme, projects_proposal %></td>
+                            <td>
+                              <% if projects_proposal.state == "Analisando" %>
+                                <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10" style="margin-right: 5px">
+                                  <%= projects_proposal.state %>
+                                </span>
+                              <% end %>
+                              <% if projects_proposal.state == "Aprovado" %>
+                                <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-600 ring-1 ring-inset ring-blue-500/10">
+                                  <%= projects_proposal.state %>
+                                </span>
+                              <% end %>
+                              <% if projects_proposal.state == "Reprovado" %>
+                                <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-600 ring-1 ring-inset ring-red-500/10">
+                                  <%= projects_proposal.state %>
+                                </span>
+                              <% end %>
+                            </td>
+                            <td class="flex">
+                              <%= link_to 'Detalhes', projects_proposal, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #3b82f6; margin: 3px;" %>              
+                              <%= link_to 'Excluir', projects_proposal, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
+                            </td>
+                          </tr>
+                        <% end %>
                       
-                      <% @project.projects_draft.each do |projects_draft| %>
+                      </tbody>
+                    </table>
+
+                  </div>
+                  <!--/Proposal Card-->
+
+                  <!-- Draft Card-->
+                  <div id='projects_drafts' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white" style="margin-top: 15px;">
+                    <h1 class="text-3xl font-bold justify-center" style="text-align: center;">
+                      Project Draft
+                    </h1>
+                    <table id="projects_drafts_table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                      <thead>
+
                         <tr>
-                          <td><%= link_to projects_draft.theme, projects_draft %></td>
-                          <td>
-                            <% if projects_draft.state == "Analisando" %>
-                              <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10" style="margin-right: 5px">
-                                <%= projects_draft.state %>
-                              </span>
-                            <% end %>
-                            <% if projects_draft.state == "Aprovado" %>
-                              <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-600 ring-1 ring-inset ring-blue-500/10">
-                                <%= projects_draft.state %>
-                              </span>
-                            <% end %>
-                            <% if projects_draft.state == "Reprovado" %>
-                              <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-600 ring-1 ring-inset ring-red-500/10">
-                                <%= projects_draft.state %>
-                              </span>
-                            <% end %>
-                          </td>
-                          <td class="flex">
-                            <%= link_to 'Detalhes', projects_draft, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #3b82f6; margin: 3px;" %>              
-                            <%= link_to 'Excluir', projects_draft, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
-                          </td>
+                          <th data-priority="1">Draft</th>
+                          <th data-priority="2">State</th>
+                          <th data-priority="3">Action</th>
                         </tr>
-                      <% end %>
-                    
-                    </tbody>
-                  </table>
 
-                </div>
-                <!--/Draft Card-->
-
-                <!-- Monograph Card-->
-                <div id='projects_monographs' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white" style="margin-top: 15px;">
-                  <h1 class="text-3xl font-bold justify-center" style="text-align: center;">
-                    Project Monograph
-                  </h1>
-                  <table id="projects_monographs_table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-                    <thead>
-
-                      <tr>
-                        <th data-priority="1">Monograph</th>
-                        <th data-priority="2">State</th>
-                        <th data-priority="3">Action</th>
-                      </tr>
-
-                    </thead>
-                    <tbody>
+                      </thead>
+                      <tbody>
+                        
+                        <% @project.projects_draft.each do |projects_draft| %>
+                          <tr>
+                            <td><%= link_to projects_draft.theme, projects_draft %></td>
+                            <td>
+                              <% if projects_draft.state == "Analisando" %>
+                                <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10" style="margin-right: 5px">
+                                  <%= projects_draft.state %>
+                                </span>
+                              <% end %>
+                              <% if projects_draft.state == "Aprovado" %>
+                                <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-600 ring-1 ring-inset ring-blue-500/10">
+                                  <%= projects_draft.state %>
+                                </span>
+                              <% end %>
+                              <% if projects_draft.state == "Reprovado" %>
+                                <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-600 ring-1 ring-inset ring-red-500/10">
+                                  <%= projects_draft.state %>
+                                </span>
+                              <% end %>
+                            </td>
+                            <td class="flex">
+                              <%= link_to 'Detalhes', projects_draft, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #3b82f6; margin: 3px;" %>              
+                              <%= link_to 'Excluir', projects_draft, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
+                            </td>
+                          </tr>
+                        <% end %>
                       
-                      <% @project.projects_monograph.each do |projects_monograph| %>
-                        <tr>
-                          <td><%= link_to projects_monograph.theme, projects_monograph %></td>
-                          <td>
-                            <% if projects_monograph.state == "Analisando" %>
-                              <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10" style="margin-right: 5px">
-                                <%= projects_monograph.state %>
-                              </span>
-                            <% end %>
-                            <% if projects_monograph.state == "Aprovado" %>
-                              <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-600 ring-1 ring-inset ring-blue-500/10">
-                                <%= projects_monograph.state %>
-                              </span>
-                            <% end %>
-                            <% if projects_monograph.state == "Reprovado" %>
-                              <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-600 ring-1 ring-inset ring-red-500/10">
-                                <%= projects_monograph.state %>
-                              </span>
-                            <% end %>
-                          </td>
-                          <td class="flex">
-                            <%= link_to 'Detalhes', projects_monograph, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #3b82f6; margin: 3px;" %>              
-                            <%= link_to 'Excluir', projects_monograph, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
-                          </td>
-                        </tr>
-                      <% end %>
-                    
-                    </tbody>
-                  </table>
+                      </tbody>
+                    </table>
 
-                </div>
-                <!--/Monograph Card--> 
+                  </div>
+                  <!--/Draft Card-->
+
+                  <!-- Monograph Card-->
+                  <div id='projects_monographs' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white" style="margin-top: 15px;">
+                    <h1 class="text-3xl font-bold justify-center" style="text-align: center;">
+                      Project Monograph
+                    </h1>
+                    <table id="projects_monographs_table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                      <thead>
+
+                        <tr>
+                          <th data-priority="1">Monograph</th>
+                          <th data-priority="2">State</th>
+                          <th data-priority="3">Action</th>
+                        </tr>
+
+                      </thead>
+                      <tbody>
+                        
+                        <% @project.projects_monograph.each do |projects_monograph| %>
+                          <tr>
+                            <td><%= link_to projects_monograph.theme, projects_monograph %></td>
+                            <td>
+                              <% if projects_monograph.state == "Analisando" %>
+                                <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10" style="margin-right: 5px">
+                                  <%= projects_monograph.state %>
+                                </span>
+                              <% end %>
+                              <% if projects_monograph.state == "Aprovado" %>
+                                <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-600 ring-1 ring-inset ring-blue-500/10">
+                                  <%= projects_monograph.state %>
+                                </span>
+                              <% end %>
+                              <% if projects_monograph.state == "Reprovado" %>
+                                <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-600 ring-1 ring-inset ring-red-500/10">
+                                  <%= projects_monograph.state %>
+                                </span>
+                              <% end %>
+                            </td>
+                            <td class="flex">
+                              <%= link_to 'Detalhes', projects_monograph, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #3b82f6; margin: 3px;" %>              
+                              <%= link_to 'Excluir', projects_monograph, method: :delete, data: { confirm: 'Tem certeza?', turbo: false }, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
+                            </td>
+                          </tr>
+                        <% end %>
+                      
+                      </tbody>
+                    </table>
+
+                  </div>
+                  <!--/Monograph Card--> 
+                <% end %>
 
               </div>    
 

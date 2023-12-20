@@ -22,18 +22,21 @@
         <li>
             <a href='<%= "/project/#{@project.id}/suggestions/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-5">Add Suggestions</a>
         </li>
-        <li>
-            <a href='<%= "/project/#{@project.id}/proposals/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-6">Add Proposals</a>
-        </li>
-        <li>
-            <a href='<%= "/project/#{@project.id}/drafts/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-7">Add Project Drafts</a>
-        </li>
-        <li>
-            <a href='<%= "/project/#{@project.id}/monographs/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-8">Add Monographs</a>
-        </li>
-        <li>
-            <a href='<%= "/project/#{@project.id}/preview" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-8">Preview</a>
-        </li>
+
+        <% if @project.state == "Aprovado" %>
+            <li>
+                <a href='<%= "/project/#{@project.id}/proposals/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-6">Add Proposals</a>
+            </li>
+            <li>
+                <a href='<%= "/project/#{@project.id}/drafts/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-7">Add Project Drafts</a>
+            </li>
+            <li>
+                <a href='<%= "/project/#{@project.id}/monographs/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-8">Add Monographs</a>
+            </li>
+            <li>
+                <a href='<%= "/project/#{@project.id}/preview" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-8">Preview</a>
+            </li>
+        <% end %>
     </ul>
     
 </div>
