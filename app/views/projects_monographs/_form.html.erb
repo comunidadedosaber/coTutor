@@ -1,3 +1,5 @@
+
+
 <%= form_with(model: monograph) do |form| %>
 
   <div class="actions">
@@ -15,72 +17,78 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= form.label :project, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= form.collection_select :project_id, Project.all, :id, :title, { prompt: "Select an option" }, class: "form-control" %>
-    </div>
-  </div>
   
   <div class="field">
     <%= form.label :theme %>
-    <%= form.text_field :theme %>
-  </div>
+    <%= form.text_field :theme, class: "placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
+  </div> 
 
   <div class="field">
     <%= form.label :editor %>
-    <%= form.text_field :editor %>
+    <%= form.select :editor, options_for_select(['CS']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
   </div>
 
   <div class="field">
     <%= form.label :language %>
-    <%= form.text_field :language %>
+    <%= form.select :language, options_for_select(['Português']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
   </div>
 
   <div class="field">
     <%= form.label :country %>
-    <%= form.text_field :country %>
-  </div>
+    <%= form.select :country, options_for_select(['Angola']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
+  </div> 
 
-  <div class="field">
-    <%= form.label :project_type %>
-    <%= form.text_field :project_type %>
+  <div class="form-group">
+    <%= form.label :project_type, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.collection_select :project_id, Project.where(id: [@project.id]), :id, :title, { prompt: "Select an option" }, class: "placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :pages %>
-    <%= form.text_field :pages %>
+    <%= form.text_field :pages, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
   </div>
 
   <div class="field">
     <%= form.label :terms_use %>
-    <%= form.text_field :terms_use %>
+    <%= form.text_area :terms_use, class: "tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
   </div>
+  <%= tinymce %>
 
   <div class="field">
     <%= form.label :objective %>
-    <%= form.text_field :objective %>
+    <%= form.text_area :objective, class: "tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
   </div>
+  <%= tinymce %>
 
   <div class="field">
     <%= form.label :summary %>
-    <%= form.text_field :summary %>
+    <%= form.text_area :summary, class: "tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
   </div>
+  <%= tinymce %>
 
   <div class="field">
     <%= form.label :state %>
-    <%= form.text_field :state %>
+    <%= form.select :state, options_for_select(['Analisando', 'Aprovado', 'Reprovado']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
   </div>
 
   <div class="field">
     <%= form.label :privacy %>
-    <%= form.text_field :privacy %>
+    <%= form.select :privacy, options_for_select(['Publico', 'Privado']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
   </div>
 
   <div class="field">
     <%= form.label :lective_year %>
-    <%= form.text_field :lective_year %>
+    <%= form.select :lective_year, options_for_select(['23/24']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
+  </div>
+
+  <div class="form-group" hidden>
+    <%= form.label :project, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.collection_select :project_id, Project.where(id: [@project.id]), :id, :title, { prompt: "Select an option" }, class: "placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
+    </div>
   </div>
 
 <% end %>
+

@@ -4,7 +4,8 @@ class ProjectsDraftsController < ApplicationController
     end
 
     def show
-      @draft = ProjectsDraft.find(params["id"])
+      @draft = ProjectsDraft.find(params["id"])     
+      @project = Project.find(@draft.project.id)
       return render "show"
     end
   
@@ -13,8 +14,7 @@ class ProjectsDraftsController < ApplicationController
     end
   
     def create
-      @draft = ProjectsDraft.where(project_id: draft_params[:project_id], state: ["Aprovado", "Analisando"])
-      
+      @draft = ProjectsDraft.where(project_id: draft_params[:project_id], state: ["Aprovado", "Analisando"])      
       if @draft.present?
         @draft.each do |draft_project|
           if draft_project.state == "Aprovado"
@@ -44,14 +44,24 @@ class ProjectsDraftsController < ApplicationController
   
     def edit
       @draft = ProjectsDraft.find(params[:id])
+      @project = Project.find(@draft.project.id)
+      if @draft.state == "Analisando"
+        render :edit
+      else
+        redirect_to "/projects/#{@draft.project.id}"
+      end
     end
   
     def update
       @draft = ProjectsDraft.find(params[:id])
-      if @draft.update(draft_params)
-        redirect_to projects_drafts_path
+      if @draft.state == "Analisando"        
+        if @draft.update(draft_params)
+          redirect_to "/projects/#{@draft.project.id}"
+        else
+          render :edit
+        end
       else
-        render :edit
+        redirect_to "/projects/#{@draft.project.id}"
       end
     end
   

@@ -4,7 +4,8 @@ class ProjectsSuggestionsController < ApplicationController
     end
 
     def show
-      @suggestion = ProjectsSuggestion.find(params["id"])
+      @suggestion = ProjectsSuggestion.find(params["id"]) 
+      @project = Project.find(@suggestion.project.id)
       return render "show"
     end
   
@@ -14,23 +15,37 @@ class ProjectsSuggestionsController < ApplicationController
   
     def create
       @suggestion = ProjectsSuggestion.new(suggestion_params)
-      if @suggestion.save
-        redirect_to "/projects/#{suggestion_params["project_id"]}"
+      if @suggestion.project.state == "Analisando"
+        if @suggestion.save
+          redirect_to "/projects/#{suggestion_params["project_id"]}"
+        else
+          render :new
+        end 
       else
-        render :new
-      end            
+        redirect_to "/projects/#{@suggestion.project.id}"
+      end           
     end
   
     def edit
-      @suggestion = ProjectsSuggestion.find(params[:id])
+      @suggestion = ProjectsSuggestion.find(params[:id])    
+      @project = Project.find(@suggestion.project.id)
+      if @suggestion.project.state == "Analisando"
+        render :edit
+      else
+        redirect_to "/projects/#{@suggestion.project.id}"
+      end
     end
   
     def update
       @suggestion = ProjectsSuggestion.find(params[:id])
-      if @suggestion.update(suggestion_params)
-        redirect_to projects_suggestions_path
+      if @suggestion.project.state == "Analisando"
+        if @suggestion.update(suggestion_params)
+          redirect_to "/projects/#{@suggestion.project.id}"
+        else
+          render :edit
+        end
       else
-        render :edit
+        redirect_to "/projects/#{@suggestion.project.id}"
       end
     end
   
