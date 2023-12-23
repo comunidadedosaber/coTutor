@@ -4,7 +4,8 @@ class ProjectsArchivesController < ApplicationController
     end
 
     def show
-      @archive = ProjectsArchive.find(params["id"])
+      @archive = ProjectsArchive.find(params["id"]) 
+      @project = Project.find(@archive.project.id)
       return render "show"
     end
   
@@ -23,21 +24,35 @@ class ProjectsArchivesController < ApplicationController
   
     def edit
       @archive = ProjectsArchive.find(params[:id])
+      @project = Project.find(@archive.project.id)
+      if @archive.project.state == "Analisando"
+        render :edit
+      else
+        redirect_to "/projects/#{@archive.project.id}"
+      end
     end
   
     def update
       @archive = ProjectsArchive.find(params[:id])
-      if @archive.update(archive_params)
-        redirect_to projects_archives_path
+      if @archive.project.state == "Analisando"      
+        if @archive.update(archive_params)
+          redirect_to "/projects/#{@archive.project.id}"
+        else
+          render :edit
+        end
       else
-        render :edit
+        redirect_to "/projects/#{@archive.project.id}"
       end
     end
   
     def destroy
       @archive = ProjectsArchive.find(params[:id])
-      @archive.destroy
-      redirect_to projects_archives_path
+      if @archive.project.state == "Analisando"
+        @archive.destroy
+        redirect_to "/projects/#{@archive.project.id}"
+      else
+        redirect_to "/projects/#{@archive.project.id}"
+      end
     end
   
     private

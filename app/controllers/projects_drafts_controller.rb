@@ -4,7 +4,8 @@ class ProjectsDraftsController < ApplicationController
     end
 
     def show
-      @draft = ProjectsDraft.find(params["id"])
+      @draft = ProjectsDraft.find(params["id"])     
+      @project = Project.find(@draft.project.id)
       return render "show"
     end
   
@@ -13,31 +14,65 @@ class ProjectsDraftsController < ApplicationController
     end
   
     def create
-      @draft = ProjectsDraft.new(draft_params)
-      if @draft.save
-        redirect_to "/projects/#{draft_params["project_id"]}"
+      @draft = ProjectsDraft.where(project_id: draft_params[:project_id], state: ["Aprovado", "Analisando"])      
+      if @draft.present?
+        @draft.each do |draft_project|
+          if draft_project.state == "Aprovado"
+            redirect_to ("/project/#{draft_params["project_id"]}/drafts/new"); return
+          else
+            if draft_project.state == "Analisando"
+              redirect_to ("/project/#{draft_params["project_id"]}/drafts/new"); return
+            else
+              @draft = ProjectsDraft.new(draft_params)
+              if @draft.save
+                redirect_to ("/projects/#{draft_params["project_id"]}"); return
+              else
+                render :new
+              end
+            end
+          end
+        end
       else
-        render :new
+        @draft = ProjectsDraft.new(draft_params)
+        if @draft.save
+          redirect_to ("/projects/#{draft_params["project_id"]}"); return
+        else
+          render :new
+        end
       end
     end
   
     def edit
       @draft = ProjectsDraft.find(params[:id])
+      @project = Project.find(@draft.project.id)
+      if @draft.state == "Analisando"
+        render :edit
+      else
+        redirect_to "/projects/#{@draft.project.id}"
+      end
     end
   
     def update
       @draft = ProjectsDraft.find(params[:id])
-      if @draft.update(draft_params)
-        redirect_to projects_drafts_path
+      if @draft.state == "Analisando"        
+        if @draft.update(draft_params)
+          redirect_to "/projects/#{@draft.project.id}"
+        else
+          render :edit
+        end
       else
-        render :edit
+        redirect_to "/projects/#{@draft.project.id}"
       end
     end
   
     def destroy
       @draft = ProjectsDraft.find(params[:id])
-      @draft.destroy
-      redirect_to projects_drafts_path
+      if @draft.state == "Analisando"
+        @draft.destroy
+        redirect_to "/projects/#{@draft.project.id}"
+      else
+        redirect_to "/projects/#{@draft.project.id}"
+      end
     end
   
     private

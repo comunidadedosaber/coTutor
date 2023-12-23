@@ -14,30 +14,48 @@ class ProjectsKeywordsController < ApplicationController
   
     def create
       @keyword = ProjectsKeyword.new(keyword_params)
-      if @keyword.save
-        redirect_to "/projects/#{keyword_params["project_id"]}"
+      if @keyword.project.state == "Analisando"
+        if @keyword.save
+          redirect_to "/projects/#{keyword_params["project_id"]}"
+        else
+          render :new
+        end
       else
-        render :new
+        redirect_to "/projects/#{@keyword.project.id}"
       end
     end
   
     def edit
-      @keyword = ProjectsKeyword.find(params[:id])
+      @keyword = ProjectsKeyword.find(params[:id]) 
+      @project = Project.find(@keyword.project.id)
+      if @keyword.project.state == "Analisando"
+        render :edit
+      else
+        redirect_to "/projects/#{@keyword.project.id}"
+      end
     end
   
     def update
       @keyword = ProjectsKeyword.find(params[:id])
-      if @keyword.update(keyword_params)
-        redirect_to projects_keywords_path
+      if @keyword.project.state == "Analisando"
+        if @keyword.update(keyword_params)
+          redirect_to "/projects/#{@keyword.project.id}"
+        else
+          render :edit
+        end
       else
-        render :edit
+        redirect_to "/projects/#{@keyword.project.id}"
       end
     end
   
     def destroy
       @keyword = ProjectsKeyword.find(params[:id])
-      @keyword.destroy
-      redirect_to projects_keywords_path
+      if @keyword.project.state == "Analisando"
+        @keyword.destroy
+        redirect_to "/projects/#{@keyword.project.id}"
+      else
+        redirect_to "/projects/#{@keyword.project.id}"
+      end
     end
   
     private

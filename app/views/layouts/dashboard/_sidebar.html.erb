@@ -1,39 +1,44 @@
 <!-- Filters -->
 <div class="hidden lg:block">
 
-    <h3 class="sr-only">Categories</h3>
+    <% if @project.id.present? %>
+        <ul role="list" class="space-y-4 pb-6 text-sm font-medium text-gray-900">
+            <li>
+                <a href='<%= "/projects/#{@project.id}" %>' class="font-medium text-gray-900 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Projects</a>
+            </li>
+            <li>
+                <a href='<%= "/project/#{@project.id}/members/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Add Members</a>
+            </li>
+            <li>
+                <a href='<%= "/project/#{@project.id}/boards/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">Add Boards</a>
+            </li>
+            <li>
+                <a href='<%= "/project/#{@project.id}/archives/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Add Archives</a>
+            </li>
+            <li>
+                <a href='<%= "/project/#{@project.id}/keywords/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">Add Keywords</a>
+            </li>
+            <li>
+                <a href='<%= "/project/#{@project.id}/suggestions/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-5">Add Suggestions</a>
+            </li>
 
-    <ul role="list" class="space-y-4 pb-6 text-sm font-medium text-gray-900">
-        <li>
-            <a href='<%= "/projects/#{@project.id}" %>' class="font-medium text-gray-900 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Projects</a>
-        </li>
-        <li>
-            <a href='<%= "/project/#{@project.id}/members/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Add Members</a>
-        </li>
-        <li>
-            <a href='<%= "/project/#{@project.id}/boards/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">Add Boards</a>
-        </li>
-        <li>
-            <a href='<%= "/project/#{@project.id}/archives/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Add Archives</a>
-        </li>
-        <li>
-            <a href='<%= "/project/#{@project.id}/keywords/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">Add Keywords</a>
-        </li>
-        <li>
-            <a href='<%= "/project/#{@project.id}/suggestions/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-5">Add Suggestions</a>
-        </li>
-        <li>
-            <a href='<%= "/project/#{@project.id}/proposals/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-6">Add Proposals</a>
-        </li>
-        <li>
-            <a href='<%= "/project/#{@project.id}/drafts/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-7">Add Project Drafts</a>
-        </li>
-        <li>
-            <a href='<%= "/project/#{@project.id}/monographs/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-8">Add Monographs</a>
-        </li>
-        <li>
-            <a href='<%= "/project/#{@project.id}/preview" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-8">Preview</a>
-        </li>
-    </ul>
+            <% if @project.state == "Aprovado" %>
+                <li>
+                    <a href='<%= "/project/#{@project.id}/proposals/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-6">Add Proposals</a>
+                </li>
+                <li>
+                    <a href='<%= "/project/#{@project.id}/drafts/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-7">Add Project Drafts</a>
+                </li>
+                <li>
+                    <a href='<%= "/project/#{@project.id}/monographs/new" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-8">Add Monographs</a>
+                </li>
+                <% if @project.state == "Aprovado" %>
+                    <li>
+                        <a href='<%= "/project/#{@project.id}/preview" %>' class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-9">Preview</a>
+                    </li>
+                <% end %>
+            <% end %>
+        </ul>
+    <% end %>
     
 </div>

@@ -14,18 +14,15 @@ class ProjectsController < ApplicationController
     end
   
     def create
-      @project = Project.new(project_params)
-      
+      @project = Project.new(project_params)      
       if @project.save
-        # Add Member to a project
         project_id = @project.id
         member_params = {}
         member_params["project_id"] = @project.id
         member_params["user_id"] = current_user.id
         member_params["perfil_type"] = "Autor"
         @member = ProjectsMember.new(member_params)
-        @member.save
-        
+        @member.save        
         redirect_to "/#{current_user.id}/dashboard"
       else
         render :new
@@ -34,32 +31,51 @@ class ProjectsController < ApplicationController
   
     def edit
       @project = Project.find(params[:id])
+      if @project.state == "Analisando"
+        render :edit
+      else
+        redirect_to "/projects/#{@project.id}"
+      end
     end
   
     def update
       @project = Project.find(params[:id])
-      if @project.update(project_params)
-        redirect_to projects_path
+      if @project.state == "Analisando"
+        if @project.update(project_params)
+          redirect_to "/projects/#{params[:id]}"
+        else
+          render :edit
+        end
       else
-        render :edit
+        redirect_to "/projects/#{@project.id}"
       end
     end
   
     def destroy
       @project = Project.find(params[:id])
-      @project.destroy
-      redirect_to projects_path
+      if @project.state == "Analisando"
+        @project.destroy
+        redirect_to "/projects/#{@project.id}"
+      else
+        redirect_to "/projects/#{@project.id}"
+      end
     end  
     
-    # PREVIEW
     def preview
-      @project = Project.find(params["id"])
-      @monograph = @project.projects_monograph.where("state = ?", "Analisando")[0]
-      @user = User.find(1)
-      return render "/projects/preview"
+      @project = Project.find(params["id"])      
+      if @project.state == "Analisando"
+        redirect_to "/projects/#{@project.id}"
+      else
+        @monograph = @project.projects_monograph.where(state: ["Aprovado"])[0]      
+        if @monograph.present? 
+          @user = User.find(current_user.id)
+          return render "/projects/preview"      
+        else   
+          redirect_to "/projects/#{@project.id}"
+        end
+      end
     end
 
-    # MEMBERS
     def index_members
       @project = Project.find(params[:id])
       @project_members = @project.projects_member
@@ -72,7 +88,6 @@ class ProjectsController < ApplicationController
       return render "/projects/members/_add_member"
     end 
 
-    # BOARDS
     def index_boards
       @project = Project.find(params[:id])
       @project_boards = @project.projects_board
@@ -85,7 +100,6 @@ class ProjectsController < ApplicationController
       return render "/projects/members/_add_board"
     end 
 
-    # KEYWORD
     def index_keywords
       @project = Project.find(params[:id])
       @project_keywords = @project.projects_keyword
@@ -94,11 +108,9 @@ class ProjectsController < ApplicationController
     
     def create_keyword
       @project = Project.find(params[:id])
-      #@users = User.all
       return render "/projects/descriptions/_add_keyword"
     end 
 
-    # SUGGESTION
     def index_suggestions
       @project = Project.find(params[:id])
       @project_suggestions = @project.projects_suggestion
@@ -107,11 +119,9 @@ class ProjectsController < ApplicationController
 
     def create_suggestion
       @project = Project.find(params[:id])
-      #@users = User.all
       return render "/projects/descriptions/_add_suggestion"
     end 
 
-    # ARCHIVE
     def index_archives
       @project = Project.find(params[:id])
       @project_archives = @project.projects_archive
@@ -120,11 +130,9 @@ class ProjectsController < ApplicationController
 
     def create_archive
       @project = Project.find(params[:id])
-      #@users = User.all
       return render "/projects/descriptions/_add_archive"
     end 
 
-    # PROPOSAL
     def index_proposals
       @project = Project.find(params[:id])
       @project_proposals = @project.projects_proposal
@@ -133,11 +141,9 @@ class ProjectsController < ApplicationController
 
     def create_proposal
       @project = Project.find(params[:id])
-      #@users = User.all
       return render "/projects/phases/_add_proposal"
     end
-
-    # DRAFT
+  
     def index_drafts
       @project = Project.find(params[:id])
       @project_drafts = @project.projects_draft
@@ -146,11 +152,9 @@ class ProjectsController < ApplicationController
 
     def create_draft
       @project = Project.find(params[:id])
-      #@users = User.all
       return render "/projects/phases/_add_draft"
     end 
-
-    # MONOGRAPH
+    
     def index_monographs
       @project = Project.find(params[:id])
       @project_monographs = @project.projects_monograph
@@ -159,7 +163,6 @@ class ProjectsController < ApplicationController
 
     def create_monograph
       @project = Project.find(params[:id])
-      #@users = User.all
       return render "/projects/phases/_add_monograph"
     end   
   

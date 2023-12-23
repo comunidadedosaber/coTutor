@@ -7,7 +7,6 @@
     <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
       <section aria-labelledby="members-heading" class="pb-24 pt-6">
-
         <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
           
           <!-- Sidebar -->
@@ -15,9 +14,18 @@
 
           <!-- Project Members grid -->
           <div class="lg:col-span-3">
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
 
             <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-0">
-              <h1 class="text-4xl font-bold tracking-tight text-gray-900"> Members </h1>         
+              <h1 class="text-4xl font-bold tracking-tight text-gray-900"> Members </h1> 
+
+              <div class="flex items-center">
+                <a class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50", href='<%= "/projects/#{@project.id}" %>' style="margin: 5px;">                 
+                  Back
+                </a>
+              </div>
+
             </div>
 
             <div>
@@ -41,7 +49,7 @@
                     <option value="Autor"> Autor</option>
                     <option value="Co-autor"> Co-autor</option>
                     <option value="Orientador"> Orientador</option>
-                    <option value="Co-Orientador"> Co-Orientador</option>
+                    <option value="Co-orientador"> Co-orientador</option>
                   </select>    
                 </div>
 
@@ -52,7 +60,7 @@
                   </select>    
                 </div>
 
-                <button type="submit" class="group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm" style="background-color: #3b82f6;">Add Member</button>
+                <button type="submit" class="group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm" style="background-color: #3b82f6;">Add member</button>
               </form>           
             </div>   
 

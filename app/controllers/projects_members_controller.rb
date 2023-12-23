@@ -5,6 +5,7 @@ class ProjectsMembersController < ApplicationController
 
     def show
       @member = ProjectsMember.find(params["id"])
+      @project = Project.find(@member.project.id)
       return render "show"
     end
   
@@ -13,31 +14,60 @@ class ProjectsMembersController < ApplicationController
     end
   
     def create
-      @member = ProjectsMember.new(member_params)
-      if @member.save
-        redirect_to "/projects/#{member_params["project_id"]}"
+      @member = ProjectsMember.all
+      @member_user = @member.find_by(user_id: member_params[:user_id]) if member_params[:user_id].present?
+      @member_project = @member.find_by(project_id: member_params[:project_id]) if member_params[:project_id].present?
+      if @member_project.project.state == "Analisando"
+        if @member_user.present? && @member_project.present?
+          redirect_to "/project/#{member_params["project_id"]}/members/new"
+        else
+          @member = ProjectsMember.new(member_params)        
+          if @member.save
+            redirect_to "/projects/#{member_params["project_id"]}"
+          else
+            render :new
+          end
+        end
       else
-        render :new
+        redirect_to "/projects/#{@member_project.project.id}"
       end
     end
   
     def edit
-      @member = ProjectsMember.find(params[:id])
+      @member = ProjectsMember.find(params[:id])   
+      @project = Project.find(@member.project.id)
+      if @member.project.state == "Analisando"
+        render :edit
+      else
+        redirect_to "/projects/#{@member.project.id}"
+      end
     end
   
     def update
-      @member = ProjectsMember.find(params[:id])
-      if @member.update(member_params)
-        redirect_to projects_members_path
+      @member = ProjectsMember.find(params[:id]) 
+      if @member.project.state == "Analisando"
+        if @member.update(member_params)
+          redirect_to "/projects/#{@member.project.id}"
+        else
+          render :edit
+        end
       else
-        render :edit
+        redirect_to "/projects/#{@member.project.id}"
       end
     end
   
     def destroy
       @member = ProjectsMember.find(params[:id])
-      @member.destroy
-      redirect_to projects_members_path
+      if @member.project.state == "Analisando"
+        if @member.perfil_type == "Autor"
+          redirect_to "/projects/#{@member.project.id}"
+        else
+          @member.destroy
+          redirect_to "/projects/#{@member.project.id}"
+        end
+      else
+        redirect_to "/projects/#{@member.project.id}"
+      end
     end
 
   

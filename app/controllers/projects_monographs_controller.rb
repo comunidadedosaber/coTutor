@@ -4,7 +4,8 @@ class ProjectsMonographsController < ApplicationController
     end
 
     def show
-      @monograph = ProjectsMonograph.find(params["id"])
+      @monograph = ProjectsMonograph.find(params["id"])      
+      @project = Project.find(@monograph.project.id)
       return render "show"
     end
   
@@ -13,31 +14,65 @@ class ProjectsMonographsController < ApplicationController
     end
   
     def create
-      @monograph = ProjectsMonograph.new(monograph_params)
-      if @monograph.save        
-        redirect_to "/projects/#{monograph_params["project_id"]}"
+      @monograph = ProjectsMonograph.where(project_id: monograph_params[:project_id], state: ["Aprovado", "Analisando"])      
+      if @monograph.present?
+        @monograph.each do |monograph_project|
+          if monograph_project.state == "Aprovado"
+            redirect_to ("/project/#{monograph_params["project_id"]}/monographs/new"); return
+          else
+            if monograph_project.state == "Analisando"
+              redirect_to ("/project/#{monograph_params["project_id"]}/monographs/new"); return
+            else
+              @monograph = ProjectsMonograph.new(monograph_params)
+              if @monograph.save
+                redirect_to ("/projects/#{monograph_params["project_id"]}"); return
+              else
+                render :new
+              end
+            end
+          end
+        end
       else
-        render :new
+        @monograph = ProjectsMonograph.new(monograph_params)
+        if @monograph.save        
+          redirect_to ("/projects/#{monograph_params["project_id"]}"); return
+        else
+          render :new
+        end
       end
     end
   
     def edit
-      @monograph = ProjectsMonograph.find(params[:id])
+      @monograph = ProjectsMonograph.find(params[:id])     
+      @project = Project.find(@monograph.project.id)
+      if @monograph.state == "Analisando"
+        render :edit
+      else
+        redirect_to "/projects/#{@monograph.project.id}"
+      end
     end
   
     def update
       @monograph = ProjectsMonograph.find(params[:id])
-      if @monograph.update(monograph_params)
-        redirect_to projects_monographs_path
+      if @monograph.state == "Analisando"
+        if @monograph.update(monograph_params)
+          redirect_to "/projects/#{@monograph.project.id}"
+        else
+          render :edit
+        end
       else
-        render :edit
+        redirect_to "/projects/#{@monograph.project.id}"
       end
     end
   
     def destroy
       @monograph = ProjectsMonograph.find(params[:id])
-      @monograph.destroy
-      redirect_to projects_monographs_path
+      if @monograph.state == "Analisando"
+        @monograph.destroy
+        redirect_to "/projects/#{@monograph.project.id}"
+      else
+        redirect_to "/projects/#{@monograph.project.id}"
+      end
     end
   
     private

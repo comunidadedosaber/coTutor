@@ -1,13 +1,42 @@
-<p style="color: green"><%= notice %></p>
+<%= render partial:'layouts/dashboard/header' %>  
 
-<%= render @archive %>
 
-<div>
-  <%= link_to "Edit this archive", edit_projects_archive_path(@archive) %> |
-  <%= link_to "Back to archives", projects_archives_path %>
+<div class="bg-white">
+  <div>
 
-  <p><strong>Project:</strong> <%= @archive.project.title %></p>
-  <p><strong>File:</strong> <%= @archive.archive %></p>
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section aria-labelledby="project-heading" class="pb-24 pt-6">
+        <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+          
+          <!-- Sidebar -->
+          <%= render partial:'layouts/dashboard/sidebar' %> 
 
-  <%= button_to "Destroy this archive", @archive, method: :delete %>
+          <div class="lg:col-span-3">
+            <!-- Project description -->
+            <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-0">
+
+              <h1 class="text-4xl font-bold tracking-tight text-gray-900"> Archive </h1>
+
+              <div class="flex items-center">                
+                <%= button_to "Excluir", @archive, method: :delete, class: "group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm", style: "background-color: #F44336; margin: 3px;" %>
+                <a class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50", href='<%= "/projects/#{@archive.project.id}" %>' style="margin: 5px;">                 
+                  Back
+                </a>
+              </div> 
+
+            </div>        
+        
+            <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+              <!-- Project monograph -->
+              <div class="lg:col-span-3">
+                <p><strong>Project:</strong> <%= @archive.project.title %></p>
+                <p><strong>File:</strong> <%= @archive.archive %></p>
+              </div> 
+            </div> 
+
+          </div> 
+      </section>              
+    </main>  
+
+  </div>      
 </div>

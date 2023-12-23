@@ -1,10 +1,44 @@
-<h1>Editing suggestion</h1>
+<%= render partial:'layouts/dashboard/header' %>   
 
-<%= render "form", suggestion: @suggestion %>
+<div class="bg-white">
+  <div>
 
-<br>
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section aria-labelledby="products-heading" class="pb-24 pt-6">
+        <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+          
+          <!-- Sidebar -->
+          <%= render partial:'layouts/dashboard/sidebar' %>  
 
-<div>
-  <%= link_to "Show this suggestion", @suggestion %> |
-  <%= link_to "Back to suggestions", projects_suggestions_path %>
+          <!-- Project grid -->
+          <div class="lg:col-span-3">
+            <!-- Project description -->
+            <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-0">
+
+              <h1 class="text-4xl font-bold tracking-tight text-gray-900"> Suggestion </h1>
+
+              <div class="flex items-center"><a class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50", href='<%= "/projects/#{@suggestion.project.id}" %>' style="margin: 5px;">                 
+                  Back
+                </a>
+              </div> 
+
+            </div>        
+          
+            <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+              <!-- Project monograph -->
+              <div class="lg:col-span-3">
+
+                <%= render "form", suggestion: @suggestion %>
+                
+              </div> 
+            </div> 
+          </div>
+
+        </div>  
+      </section>              
+    </main>  
+
+  </div>      
 </div>
+
+<%= render partial:'layouts/dashboard/footer' %> 

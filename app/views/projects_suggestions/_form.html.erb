@@ -1,3 +1,5 @@
+
+
 <%= form_with(model: suggestion) do |form| %>
 
   <div class="actions">
@@ -19,7 +21,7 @@
   <div class="form-group">
     <%= form.label :project, class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= form.collection_select :project_id, Project.all, :id, :title, { prompt: "Select an option" }, class: "form-control" %>
+      <%= form.collection_select :project_id, Project.all, :id, :title, { prompt: "Select an option" }, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
     </div>
   </div>
 
@@ -28,9 +30,12 @@
     <%= form.select :project_type, options_for_select(['Project', 'Proposal', 'Draft']), {}, class: "placeholder:italic placeholder-text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
   </div>
 
-  <div class="text">
-    <%= form.label :suggestions %>
-    <%= form.text_field :suggestions %>
+  <div class="field">
+    <%= form.label :suggestion %>
+    <%= form.text_area :suggestion, class: "tinymce placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" %>
   </div>
+  <%= tinymce %>
 
 <% end %>
+                
+             
